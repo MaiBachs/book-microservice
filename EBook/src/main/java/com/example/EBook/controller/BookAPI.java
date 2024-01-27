@@ -6,40 +6,50 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.EBook.Service.BookService;
+import com.example.EBook.entity.BookEntity;
+import com.example.EBook.factory.ResponseFactory;
 import com.example.EBook.input.BookInput;
 import com.example.EBook.output.BookOutput;
+import com.example.EBook.output.GeneralResponse;
+
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 @RequestMapping("/api/e-book-service")
+@RequiredArgsConstructor
 public class BookAPI {
     @Autowired
     private BookService bookService;
+    @Autowired
+    private ResponseFactory responseFactory;
     
-//    @GetMapping(value = "/getAllBook")
-//    public List<BookEntity> getAllBook(){
-//        return bookService.findAll();
-//    }
-//
-//    @PostMapping(value = "/getBookByName")
-//    public List<BookEntity> getBookByName(@RequestBody BookEntity bookEntity){
-//        return bookService.findByBookName(bookEntity.getBookName());
-//    }
-//    @GetMapping(value = "/topBook")
-//    public List<BookEntity> findTopBook(){
-//        return bookService.findTopBook();
-//    }
-//    @PostMapping(value = "/getBookByCategory")
-//    public BookOutput getBookByCategory(@RequestBody BookInput bookInput){
-//        return bookService.findByBookCategory(bookInput.getPage()-1,  bookInput.getSize(), bookInput.getBookCategory());
-//    }
-    @PostMapping(value = "/getBookByPage")
-    public ResponseEntity<BookOutput> findBookByPage(@RequestBody BookInput bookInput){
-    	ResponseEntity<BookOutput> response = null;
-        BookOutput bOutput = bookService.getBookByPage(bookInput.getPage()-1, bookInput.getSize());
-        response = ResponseEntity.ok(bOutput);
-        return response;
+    @GetMapping(value = "/get-all-book")
+    public ResponseEntity<GeneralResponse<List<BookEntity>>> getAllBook(){
+         List<BookEntity> result = bookService.findAll();
+         return responseFactory.success(result);
+    }
+
+    @PostMapping(value = "/get-book-by-name")
+    public ResponseEntity<GeneralResponse<List<BookEntity>>> getBookByName(@RequestBody BookEntity bookEntity){
+    	List<BookEntity> books = bookService.findByBookName(bookEntity.getBookName());
+        return responseFactory.success(books);
+    }
+    @GetMapping(value = "/top-book")
+    public ResponseEntity<GeneralResponse<List<BookEntity>>> findTopBook(){
+    	List<BookEntity> books = bookService.findTopBook();
+        return responseFactory.success(books);
+    }
+    @PostMapping(value = "/get-book-by-category")
+    public ResponseEntity<GeneralResponse<BookOutput>> getBookByCategory(@RequestBody BookInput bookInput){
+    	BookOutput bookOutput = bookService.findByBookCategory(bookInput.getPage()-1,  bookInput.getSize(), bookInput.getBookCategory());
+        return responseFactory.success(bookOutput);
+    }
+    @PostMapping(value = "/get-book-by-page")
+    public ResponseEntity<GeneralResponse<BookOutput>> findBookByPage(@RequestBody BookInput bookInput){
+        BookOutput bookOutput = bookService.getBookByPage(bookInput.getPage()-1, bookInput.getSize());
+        return responseFactory.success(bookOutput);
     }
 }

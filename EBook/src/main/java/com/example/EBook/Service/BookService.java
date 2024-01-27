@@ -1,6 +1,9 @@
 package com.example.EBook.Service;
 
 import org.springframework.data.domain.Pageable;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,4 +28,26 @@ public class BookService {
         bookOutput.setBookEntityList(bookPage.getContent());
         return bookOutput;
 	}
+	
+	public List<BookEntity> findAll() {
+		return bookRepository.findAll();
+	}
+	
+	public BookOutput findByBookCategory(int page, int size,String bookCategory) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<BookEntity> bookPage = bookRepository.findByBookCategory(bookCategory, pageable);
+        BookOutput bookOutput = new BookOutput();
+        bookOutput.setPage(page+1);
+        bookOutput.setTotalPage(bookPage.getTotalPages());
+        bookOutput.setBookEntityList(bookPage.getContent());
+        return bookOutput;
+    }
+	
+	public List<BookEntity> findTopBook() {
+        return bookRepository.findTop10ByOrderByFavoriteDesc();
+    }
+
+    public List<BookEntity> findByBookName(String bookName) {
+        return bookRepository.findByBookNameContaining(bookName);
+    }
 }
