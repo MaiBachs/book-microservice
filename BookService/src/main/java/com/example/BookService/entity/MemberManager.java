@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Data;
 
 @Data
@@ -31,6 +32,8 @@ public class MemberManager {
 	private Date endDate;
 	@Column
 	private Long status;
+	@Transient
+	private Long term;
 	
 	public MemberManager(Long memberManagerId, Long userId, Long termId, Date createdDate, Date updatedDate,
 			Date startDate, Date endDate, Long status) {
@@ -44,6 +47,22 @@ public class MemberManager {
 		this.endDate = endDate;
 		this.status = status;
 	}
+	
+
+	public MemberManager(Long memberManagerId, Long userId, Long termId, Date createdDate, Date updatedDate,
+			Date startDate, Date endDate, Long status, Long term) {
+		super();
+		this.memberManagerId = memberManagerId;
+		this.userId = userId;
+		this.termId = termId;
+		this.createdDate = createdDate;
+		this.updatedDate = updatedDate;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.status = status;
+		this.term = term;
+	}
+
 
 	public MemberManager() {
 		super();
@@ -112,4 +131,16 @@ public class MemberManager {
 	public void setStatus(Long status) {
 		this.status = status;
 	}
+
+
+	public Long getTerm() {
+		return term;
+	}
+
+
+	public void setTerm(Long term) {
+		this.term = term;
+	}
+	
+	
 }

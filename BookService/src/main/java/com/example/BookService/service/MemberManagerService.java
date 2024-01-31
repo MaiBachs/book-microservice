@@ -22,11 +22,11 @@ public class MemberManagerService {
 		memberManager.setCreatedDate(new Date());
 		memberManager.setStatus(1l);
 		memberManager.setUpdatedDate(new Date());
-		Term term = termRepository.findById(memberManager.getTermId()).orElse(null);
+		Term term = termRepository.findByTerm(memberManager.getTerm());
 		memberManager.setStartDate(new Date());
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date());
-		calendar.add(Calendar.MONTH, 6);
+		calendar.add(Calendar.MONTH, Integer.valueOf(term.getTerm().toString()));
 		memberManager.setEndDate(calendar.getTime());
 		return memberManagerRepository.save(memberManager);
 	}

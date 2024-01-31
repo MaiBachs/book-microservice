@@ -1,42 +1,98 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './RegisterCard.module.scss';
 import classNames from 'classnames/bind';
 import { MdCardMembership } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import toastr from 'toastr';
+import { useNavigate } from 'react-router-dom';
+import PopupPayment from '../../component/PopupPayment/PopupPayment';
 
 const cx = classNames.bind(styles);
 
 function RegisterCard(props) {
     const currentDate = new Date();
+    const [url, setUrl] = useState("");
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     let json = {
-        userName: localStorage.getItem('userName'),
-        cardEntity: {
-            status: 1,
-            createDate: currentDate,
-        },
+        userId: localStorage.getItem('userId'),
+        term: ""
     };
 
-    const handleRegisterCard = () => {
+    toastr.options = {
+        positionClass: 'toast-top-center', // vị trí giữa bên trên màn hình
+        toastClass: 'toastr-custom-style', // tùy chỉnh style cho toastr
+    };
+
+    const [termList, setTermList] = useState([]);
+    let termEntity = {};
+
+
+    useEffect(()=>{
         axios
-            .post('http://localhost:8083/check-account', {
-                userName: localStorage.getItem('userName'),
+            .get('http://localhost:9191/api/book-service/term/search-all')
+            .then((response)=>{
+                setTermList(response.data);
             })
+            .catch((error) => {
+                console.log(error);
+            });
+    },[])
+
+    const navigate = useNavigate();
+
+    const handleRegisterCard = (term) => {
+        json.term = term;
+        axios
+            .get('http://localhost:9191/api/book-service/member/check-register', {params: {
+                userId: localStorage.getItem('userId'),
+            }})
             .then((response) => {
-                alert(response.data.cardEntity);
-                if (response.data.cardEntity != undefined || response.data.cardEntity != null) {
-                    alert('Tài khoản đã được đăng kí hội viên, từ ... đến ...');
+                console.log(response.data);
+                if (response.data.userId != undefined || response.data.userId != null) {
+                    toastr.warning(`Tài khoản đã được đăng kí hội viên, từ ngày ${response.data.startDate} đến ngày ${response.data.endDate}`);
                     return;
-                }
-                axios
-                    .post('http://localhost:8083/add-card', { ...json })
-                    .then((response) => {
-                        alert('Đăng kí thẻ thành công hẹn bạn 7 ngày sau đến thư viện lấy');
+                }else  {
+                    for(let i =0; i < termList.length; i++){
+                        if(termList[i].term == term){
+                            termEntity = termList[i];
+                            break;
+                        }
+                    }
+                    var body = {
+                        amount: termEntity.cost,
+                        orderInfo: `package member 12 month-${localStorage.getItem('userId')}`+"-"+`${termEntity.term}`
+                    }
+                    axios({
+                        method: 'post',
+                        url: 'http://localhost:9191/api/book-service/vnpay/submitOrder',
+                        data: body,
+                        headers: { "Content-Type": "multipart/form-data","Access-Control-Allow-Origin": "*" },
+                    })
+                    .then((response)=>{
+                        console.log(response.data);
+                        const urlArray = response.data.split(" ");
+                        setUrl(urlArray[0]+urlArray[1]);
+                        console.log(url);
+                        handleOpen();
+
+                        // navigate(urlArray[0]+urlArray[1])s
                     })
                     .catch((error) => {
                         console.log(error);
                     });
+                }
+                // axios
+                //     .post('http://localhost:9191/api/book-service/member/register', { ...json })
+                //     .then((response) => {
+                //         alert(`Bạn đã trở thành hội viên của waka từ ngày ${response.data.startDate} đến ngày ${response.data.endDate}`);
+                //     })
+                //     .catch((error) => {
+                //         console.log(error);
+                //     });
             })
             .catch((error) => {
                 console.log(error);
@@ -45,6 +101,7 @@ function RegisterCard(props) {
 
     return (
         <div className={cx('wrapper')}>
+            <PopupPayment url = {url}  open={open} handleOpen={handleOpen} handleClose={handleClose}/>
             <div className={cx('header')}>
                 <div className={cx('logo')}>
                     <img src="	https://ebook.waka.vn/themes/desktop/images/logo_waka_epay.png?v=1" />
@@ -63,27 +120,31 @@ function RegisterCard(props) {
                             <div className={cx('benefit-content')}>
                                 <h3>Waka: Hội viên</h3>
                             </div>
-                            <p className={cx('benefit-title')}>Quy trình làm thẻ hội viên</p>
+                            <p className={cx('benefit-title')}>3 tháng làm hội viên waka</p>
                             <div className={cx('benefit-button')}>
-                                <Link className={cx('benefit-button-detail')}>Chi tiết</Link>
+                                <Link onClick={()=>{handleRegisterCard(3)}} className={cx('benefit-button-detail')}>
+                                    Đăng kí
+                                </Link>
                             </div>
                         </div>
                         <div className={cx('benefit')}>
                             <div className={cx('benefit-content')}>
                                 <h3>Waka: Hội viên</h3>
                             </div>
-                            <p className={cx('benefit-title')}>Quy định mượn thẻ thư viện</p>
+                            <p className={cx('benefit-title')}>6 tháng làm hội viên waka</p>
                             <div className={cx('benefit-button')}>
-                                <Link className={cx('benefit-button-detail')}>Chi tiết</Link>
+                                <Link onClick={()=>{handleRegisterCard(6)}} className={cx('benefit-button-detail')}>
+                                    Đăng kí
+                                </Link>
                             </div>
                         </div>
                         <div className={cx('benefit')}>
                             <div className={cx('benefit-content')}>
                                 <h3>Waka: Hội viên</h3>
                             </div>
-                            <p className={cx('benefit-title')}>Đăng kí trở thành hội viên</p>
+                            <p className={cx('benefit-title')}>12 tháng làm hội viên waka</p>
                             <div className={cx('benefit-button')}>
-                                <Link onClick={handleRegisterCard} className={cx('benefit-button-detail')}>
+                                <Link onClick={()=>{handleRegisterCard(12)}} className={cx('benefit-button-detail')}>
                                     Đăng kí
                                 </Link>
                             </div>
@@ -99,27 +160,20 @@ function RegisterCard(props) {
             <div className={cx('body')}>
                 <div className={cx('account')}>
                     <h4>
-                        Để trở thành hội viên của Waka và được mượn thẻ tại thư viện, bạn cần thực hiện các bước sau:
+                        Trở thành hội viên của Waka bạn cần nắm rõ những điều sau
                     </h4>
                     <br />
                     <p>
-                        1. Đăng ký làm hội viên: Đầu tiên, bạn cần tìm hiểu về chương trình thành viên của Waka và quy
-                        trình đăng ký.
+                        1. Đăng ký hội viên: Trước hết, bạn cần tham gia chương trình thành viên của Waka và hoàn tất quá trình đăng ký.
                     </p>
                     <p>
-                        2. Chuẩn bị tài liệu: Sau khi đăng ký thành công, bạn sẽ được cấp một thẻ hội viên Waka. Thẻ này
-                        sẽ có thông tin như tên của bạn và số thẻ. Để mượn sách tại thư viện, bạn cần mang thẻ hội viên
-                        này cùng với bạn khi đến thư viện.
+                        2. Khám phá thư viện sách trực tuyến: Duyệt qua bộ sưu tập đa dạng của Waka và chọn sách mà bạn muốn đọc. Có thể bạn sẽ được tận hưởng sách điện tử, âm thanh, hoặc cả hai.
                     </p>
                     <p>
-                        3. Tìm hiểu quy định mượn sách: Mỗi thư viện có các quy định riêng về việc mượn sách. Hãy tìm
-                        hiểu các quy định của thư viện Waka liên quan đến số lượng sách có thể mượn, thời gian mượn và
-                        quy trình trả sách.
+                        3. Thưởng thức đọc sách: Mọi sách đều sẵn có trực tuyến, không cần mang theo thẻ hội viên. Bạn có thể bắt đầu đọc ngay trên trang web của Waka và tận hưởng trải nghiệm đọc sách thuận tiện.
                     </p>
                     <p>
-                        4. Mượn sách tại thư viện: Khi bạn muốn mượn sách, hãy mang thẻ hội viên Waka và tìm đến quầy
-                        mượn sách tại thư viện. Liệu hỗ trợ sẽ giúp bạn trong quá trình mượn sách và kiểm tra thông tin
-                        trên thẻ hội viên để xác nhận quyền lợi mượn sách của bạn.
+                        4. Tìm hiểu về các tính năng: Khám phá các tính năng hữu ích như đánh dấu trang, tìm kiếm nhanh, và gợi ý sách dựa trên sở thích cá nhân của bạn.
                     </p>
                 </div>
             </div>

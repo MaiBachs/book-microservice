@@ -6,7 +6,6 @@ import ListBookByCategory from './Page/ListBookByCategory/ListBookByCategory';
 import RegisterCard from './Page/RegisterCard/RegisterCard';
 import ListBookSearch from './Page/ListBookSearch/ListBookSearch';
 import TopBook from './Page/TopBook/TopBook';
-import ListBookBorrowing from './Page/ListBookBorrowing/ListBookBorrowing';
 
 function App() {
     return (
@@ -20,7 +19,6 @@ function App() {
                         <Route path="/registercard" element={<RegisterCard />}></Route>
                         <Route path="/listbooksearch" element={<ListBookSearch />}></Route>
                         <Route path="/topbook" element={<TopBook />}></Route>
-                        <Route path="/listbookborrowing" element={<ListBookBorrowing />}></Route>
 
                         <Route path="*" element={<Navigate to="/home" />}></Route>
                     </Routes>

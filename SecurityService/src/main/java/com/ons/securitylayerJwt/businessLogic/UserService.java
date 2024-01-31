@@ -84,6 +84,7 @@ public class UserService{
         user.getRoles().forEach(r-> rolesNames.add(r.getRoleName()));
         String token = jwtUtilities.generateToken(user.getUsername(),rolesNames);
         loginDto.setToken(token);
+        loginDto.setUserId(user.getId());
         return loginDto;
     }
 

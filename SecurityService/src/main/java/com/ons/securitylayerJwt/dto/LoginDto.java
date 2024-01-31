@@ -9,6 +9,7 @@ import lombok.experimental.FieldDefaults;
 public class LoginDto {
 
     //it's a Data Trasfer Object for Login
+	private Integer userId;
     private String email ;
     private String password ;
     private String token;
@@ -32,8 +33,16 @@ public class LoginDto {
 	public LoginDto() {
 		super();
 	}
-	public LoginDto(String email, String password, String token) {
+	
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+	public LoginDto(Integer userId, String email, String password, String token) {
 		super();
+		this.userId = userId;
 		this.email = email;
 		this.password = password;
 		this.token = token;

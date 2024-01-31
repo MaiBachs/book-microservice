@@ -132,7 +132,7 @@ function Header(props) {
                         <img src="https://ebook.waka.vn/themes/desktop/images/hieu-soi.png" alt="logo"></img>
                     </a>
                     {localStorage.getItem('token') && (
-                        <Tippy content="Làm thẻ" className={cx('tippy')} theme="tomato">
+                        <Tippy content="Đăng kí thẻ hội viên" className={cx('tippy')} theme="tomato">
                             <Link to="/registercard">
                                 <AiFillCreditCard
                                     className={cx('card-icon')}

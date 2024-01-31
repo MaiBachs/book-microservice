@@ -47,6 +47,7 @@ function Login(props) {
             .then((response) => {
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('email', loginForm.email);
+                localStorage.setItem('userId', response.data.userId);
                 toastr.success('Đăng nhập thành công');
                 navigate('/');
             })
