@@ -10,8 +10,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class ResponseStatus implements IResponseStatus{
 	private String code;

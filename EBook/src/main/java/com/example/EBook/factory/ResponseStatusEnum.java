@@ -5,9 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Getter
-@ToString
 public enum ResponseStatusEnum implements IResponseStatus {
     SUCCESS(ResponseStatusCodeConstant.SUCCESS, "Success"),
     GENERAL_ERROR(ResponseStatusCodeConstant.GENERAL_ERROR, "Any error occur"),

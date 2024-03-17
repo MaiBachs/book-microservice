@@ -12,8 +12,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class GeneralResponse<T> implements Serializable {
