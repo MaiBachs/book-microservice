@@ -8,6 +8,8 @@ import ListBookSearch from './Page/ListBookSearch/ListBookSearch';
 import TopBook from './Page/TopBook/TopBook';
 import Chat from './Page/Chat/Chat.jsx';
 import PdfFileView from './Page/PdfFileView/PdfFileView.jsx';
+import AudioBook from './Page/AudioBook/AudioBook.jsx';
+import DetailAudioBook from './Page/DetailAudioBook/DetailAudioBook.jsx';
 
 function App() {
     return (
@@ -23,6 +25,8 @@ function App() {
                         <Route path="/topbook" element={<TopBook />}></Route>
                         <Route path="/chat" element={<Chat />}></Route>
                         <Route path="/pdffileview" element={<PdfFileView />}></Route>
+                        <Route path="/audiobook" element={<AudioBook />}></Route>
+                        <Route path="/detailaudiobook" element={<DetailAudioBook />}></Route>
 
                         <Route path="*" element={<Navigate to="/home" />}></Route>
                     </Routes>

@@ -15,7 +15,7 @@ const PdfFileView = (props) => {
             file={{
                 data: bookContent
             }}
-            /> */}
+            /> */} 
             <object data={`http://localhost:9191/api/e-book-service/download?pdfFileName=${bookCT2.preview}`} type="application/pdf" width="100%" height="100%">
                 <p>Alternative text</p>
             </object>

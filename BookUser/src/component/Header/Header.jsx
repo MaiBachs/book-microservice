@@ -247,15 +247,23 @@ function Header(props) {
                         </Link>
                     </li>
                     <li>
-                        <Link className={cx('link-menu')}>
-                            Podcast - HV
-                        </Link>
-                    </li>
-                    <li>
                         <Link className={cx('link-menu')} to="/chat">Thảo luận trực tuyến</Link>
                     </li>
                     <li>
                         <Link className={cx('link-menu-not')}>Khuyên đọc</Link>
+                    </li>
+                    <li>
+                        {/* <Link className={cx('link-menu')}>
+                            Podcast - HV
+                        </Link> */}
+                        <div  className={cx('dropdown')}>
+                            <button className={cx('dropbtn')}>PodCast</button>
+                            <div className={cx('dropdown-content')}>
+                                <Link className={cx('link-podcast')} to="/audiobook">Audio Book</Link>
+                                <Link className={cx('link-podcast')} to="/podcast">Đời sống</Link>
+                                <a href="#"></a>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
