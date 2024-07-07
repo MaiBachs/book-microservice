@@ -27,9 +27,6 @@
     <title>React App</title>
   </head>
   <body>
-    <script src="js/socket.io-2.2.0.js"></script>
-    <script src="js/moment-2.24.0.min.js"></script>
-    <script src="js/jquery-3.3.1.min.js"></script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
@@ -42,29 +39,5 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script>
-      var socket = io('http://localhost:9004/chat?token=abc123', {
-	        transports: ['polling', 'websocket']
-	    });
-        console.log(socket);
-        window._SOCKET_DATA = socket;
-
-        socket.on('connect', function () {
-        });
-        
-        socket.on('disconnect', function () {
-        });
-        socket.on('reconnect_attempt', (attempts) => {
-            console.log('Try to reconnect at ' + attempts + ' attempt(s).');
-        });
-    </script>
-    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-    <df-messenger
-      intent="WELCOME"
-      chat-title="Chatbot support"
-      agent-id="202a7d69-d3d1-4df3-94fb-715413139fb1"
-      language-code="vi"
-    ></df-messenger>
-    </script>
   </body>
 </html>

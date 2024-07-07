@@ -42,6 +42,11 @@
     font-size: 16px;
   }
   
+  .header-box-chat{
+    background-color: #e08804;
+    height: 30px;
+  }
+
   .box-chat_message {
     min-height: 60vh;  
     max-height: 60vh;  
@@ -52,10 +57,9 @@
   .box-chat {
     width:1100px;
     margin: 0 auto;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 10px;
     box-shadow: 0 0 2px 0 black;
-    border-radius: 10px;
   }
   
   .send-box {

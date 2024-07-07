@@ -1,0 +1,26 @@
+.header-tab{
+    display: flex;
+    width: 1150px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;    
+    .reading-book-management{
+      background-color: beige;
+      border: 1px solid black;
+      margin-right: 3px;
+      color: rgb(20, 15, 15);
+      line-height: 30px;
+      // border: 1px solid transparent;
+      text-decoration: none;
+      font-size: 16px;       
+    }
+    .add-reading-book{
+      background-color: beige;
+      border: 1px solid black;
+      margin-right: 3px;
+      color: rgb(16, 10, 10);
+      line-height: 30px;
+      // border: 1px solid transparent;
+      text-decoration: none;
+      font-size: 16px;
+    }
+}

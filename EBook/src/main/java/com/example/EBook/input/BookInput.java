@@ -4,6 +4,9 @@ public class BookInput {
     private int page;
     private int size;
     private String bookCategory;
+    private String bookName;
+    private Long bookPrice;
+    private String bookAuthor;
 
     public int getPage() {
         return page;
@@ -24,8 +27,33 @@ public class BookInput {
     public String getBookCategory() {
         return bookCategory;
     }
+    
+    public String getBookName() {
+		return bookName;
+	}
 
-    public void setBookCategory(String bookCategory) {
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public Long getBookPrice() {
+		return bookPrice;
+	}
+
+	public void setBookPrice(Long bookPrice) {
+		this.bookPrice = bookPrice;
+	}
+
+	public String getBookAuthor() {
+		return bookAuthor;
+	}
+
+	public void setBookAuthor(String bookAuthor) {
+		this.bookAuthor = bookAuthor;
+	}
+
+	public void setBookCategory(String bookCategory) {
         this.bookCategory = bookCategory;
     }
+    
 }

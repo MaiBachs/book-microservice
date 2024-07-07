@@ -58,6 +58,7 @@ const Chat = () => {
         <div>
             <DefaultLayout>
                 <div className={cx('box-chat')}>
+                    <div className={cx('header-box-chat')}></div>
                     <div className={cx('box-chat_message')}>
                         {renderMess}
                         <div style={{ float:"left", clear: "both" }}

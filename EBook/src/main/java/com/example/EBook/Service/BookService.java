@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.EBook.Repository.BookRepository;
 import com.example.EBook.entity.BookEntity;
+import com.example.EBook.input.BookInput;
 import com.example.EBook.output.BookOutput;
 
 @Service
@@ -50,4 +51,14 @@ public class BookService {
     public List<BookEntity> findByBookName(String bookName) {
         return bookRepository.findByBookNameContaining(bookName);
     }
+    
+    public BookOutput searchBookByPage(BookInput bookInput, int page, int size){
+		Pageable pageable = PageRequest.of(page, size);
+        Page<BookEntity> bookPage = bookRepository.searchBookByPage(bookInput.getBookName(), bookInput.getBookAuthor(), bookInput.getBookCategory(), bookInput.getBookPrice(), pageable);
+        BookOutput bookOutput = new BookOutput();
+        bookOutput.setPage(page+1);
+        bookOutput.setTotalPage(bookPage.getTotalPages());
+        bookOutput.setBookEntityList(bookPage.getContent());
+        return bookOutput;
+	}
 }
