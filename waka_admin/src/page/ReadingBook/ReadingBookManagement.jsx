@@ -9,14 +9,25 @@ import { MdDelete } from "react-icons/md";
 import { BiDetail } from "react-icons/bi";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Detail from '../../component/popupDetail/Detail';
+import DetailReadingBook from '../../component/popupDetailReadingBook/DetailReadingBook';
+import EditReadingBook from '../../component/popupEdit/EditReadingBook';
 
 const cx = classNames.bind(styles);
 
 function ReadingBookManagement() {
   const [open, setOpen] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
+  const [bookSelected, setBookSelected] = useState({}); 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handleOpenEdit = () => setOpenEdit(true);
+  const handleCloseEdit = () => setOpenEdit(false);
+
+  function handleSelectBook(book){
+    setBookSelected(book);
+    console.log(book)
+  }
+
   const [dataSearch, setDataSearch] = useState({
     bookName: "",
     bookCategory: "",
@@ -48,7 +59,6 @@ function ReadingBookManagement() {
           totalPage: response.data.data.totalPage,
           bookEntityList: [...response.data.data.bookEntityList],
         });
-        console.log(listBookSearch);
       })
       .catch();
   }, [])
@@ -62,7 +72,6 @@ function ReadingBookManagement() {
           totalPage: response.data.data.totalPage,
           bookEntityList: [...response.data.data.bookEntityList],
         });
-        console.log(listBookSearch);
       })
       .catch();
   };
@@ -94,6 +103,8 @@ function ReadingBookManagement() {
   return (
     <div className={cx('wrapper')}>
       <DefaultLayout>
+      <DetailReadingBook className={cx("detail-popup")} clas open={open} handleOpen={handleOpen} handleClose={handleClose} dataDetail = {bookSelected} />
+      <EditReadingBook className={cx("edit-popup")} clas open={openEdit} handleOpen={handleOpenEdit} handleClose={handleCloseEdit} dataEdit = {bookSelected} />
         <div className={cx("header-tab")}>
           <Link className={cx("reading-book-management")} to="/readingbookmanagement">
             Reading book management
@@ -117,7 +128,7 @@ function ReadingBookManagement() {
           <div className={cx("grid-item")}>
             <input name="bookCategory" type='text' value={dataSearch.bookCategory} onChange={(event) => { handleInputSearch(event) }}></input>
           </div>
-          <div className={cx("grid-item")}><button onClick={handleSearch}>Search</button></div>
+          <div className={cx("grid-item")}><button className={cx('button-search')} onClick={handleSearch}>Search</button></div>
           <div className={cx("grid-item")}>
             <label>Book_author</label>
           </div>
@@ -125,7 +136,6 @@ function ReadingBookManagement() {
             <input name="bookAuthor" type='text' value={dataSearch.bookAuthor} onChange={(event) => { handleInputSearch(event) }}></input>
           </div>
           <div className={cx("grid-item")}>
-            <Detail className={cx("detail-popup")} clas open={open} handleOpen={handleOpen} handleClose={handleClose}/>
           </div>
           <div className={cx("grid-item")}></div>
           <div className={cx("grid-item")}>
@@ -155,6 +165,7 @@ function ReadingBookManagement() {
                 <th className={cx("action")}>Delete</th>
               </tr>
               {listBookSearch.bookEntityList.map((book, i) => (
+                <>
                 <tr key={i}>
                   <td>{i + 1}</td>
                   <td>{book.bookName}</td>
@@ -163,10 +174,11 @@ function ReadingBookManagement() {
                   <td>{book.bookAuthor}</td>
                   <td>{book.view}</td>
                   <td><Link href='#' to="/pdffileview" state={book} >{book.preview}</Link></td>
-                  <td className={cx("action")}><BiDetail onClick={handleOpen} /></td>
-                  <td className={cx("action")}><FaEdit /></td>
-                  <td className={cx("action")}><MdDelete /></td>
+                  <td className={cx("action")}><BiDetail className={cx("detail")} onClick={()=>{handleOpen(); handleSelectBook(book)}} handleClose={handleClose} /></td>
+                  <td className={cx("action")}><FaEdit className={cx("edit")} onClick={()=>{handleOpenEdit(); handleSelectBook(book)}} handleClose={handleCloseEdit} /></td>
+                  <td className={cx("action")}><MdDelete className={cx("delete")} /></td>
                 </tr>
+                </>
               ))}
             </tbody>
           </table>

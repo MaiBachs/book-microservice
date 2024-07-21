@@ -53,8 +53,18 @@
           height: 23px;
           width: 188px;
         }
-        buttom{
-          height: 23px;
+        .button-search{
+          height: 22px;
+          border: 1px solid black;
+          border-radius: 2px;
+          background-color: #ee902c;
+          color: rgb(252, 251, 251);
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 14px;
+          padding: 0px 2px;
+          &:active{
+            background-color: #b05d05;
+          }
         }
     }
 }
@@ -75,10 +85,20 @@
       
       .books td, .books th {
         border: 1px solid #ddd;
-        padding: 8px;
+        padding: 3px;
         font-size: 16px;
         color: black;
         text-align: start;
+        .detail{
+          color: #04AA6D;
+        }
+        .edit{
+          color: #ee902c;
+        }
+        .delete{
+          color: #db5807;
+          font-size: 20px;
+        }
       }
       
       .books tr:nth-child(even){background-color: #f2f2f2;}

@@ -3,10 +3,14 @@
     border: 1px solid black;
     margin-top: 2px;
     font-size: 20px;
-    background-color: #089a64;
+    background-color: beige;
     padding-left: 5px;
+    transition: all 0.2s linear;
+    &:hover{
+        background-color: rgb(233, 233, 152);
+    }
     .link{
         text-decoration: none;
-        color: rgb(248, 245, 245);
+        color: rgb(7, 1, 1);
     }
 }

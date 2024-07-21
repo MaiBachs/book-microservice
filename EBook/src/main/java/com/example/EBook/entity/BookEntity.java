@@ -1,5 +1,6 @@
 package com.example.EBook.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -32,6 +33,10 @@ public class BookEntity {
     private String preview;
     @Column
     private Long favorite;
+    @Column
+    private Date lastUpdate;
+    @Column
+    private String lastUser;
     
     public BookEntity() {
     }
@@ -50,6 +55,25 @@ public class BookEntity {
 		this.purchases = purchases;
 		this.preview = preview;
 		this.favorite = favorite;
+	}
+	
+	public BookEntity(Long id, String bookName, String bookAuthor, String bookCategory, String bookDescription,
+			Long view, String coverBook, Long bookPrice, Long purchases, String preview, Long favorite, Date lastUpdate,
+			String lastUser) {
+		super();
+		this.id = id;
+		this.bookName = bookName;
+		this.bookAuthor = bookAuthor;
+		this.bookCategory = bookCategory;
+		this.bookDescription = bookDescription;
+		this.view = view;
+		this.coverBook = coverBook;
+		this.bookPrice = bookPrice;
+		this.purchases = purchases;
+		this.preview = preview;
+		this.favorite = favorite;
+		this.lastUpdate = lastUpdate;
+		this.lastUser = lastUser;
 	}
 
 	public String getPreview() {
@@ -139,7 +163,22 @@ public class BookEntity {
 	public void setPurchases(Long purchases) {
 		this.purchases = purchases;
 	}
-	
-	
+
+	public Date getLastUpdate() {
+		return lastUpdate;
+	}
+
+	public void setLastUpdate(Date lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
+
+	public String getLastUser() {
+		return lastUser;
+	}
+
+	public void setLastUser(String lastUser) {
+		this.lastUser = lastUser;
+	}
+
 }
 

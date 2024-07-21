@@ -17,7 +17,7 @@ const TabSidebar = (props) => {
 
     return (
         <div className={cx('tab-wrapper')}>
-            <a className={cx('link')} onClick={handleSearch}>{dataTab.title}</a>
+            <a href='#' className={cx('link')} onClick={handleSearch}>{dataTab.title}</a>
         </div>
     );
 }
