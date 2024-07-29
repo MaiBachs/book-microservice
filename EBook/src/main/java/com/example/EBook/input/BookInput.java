@@ -7,6 +7,7 @@ public class BookInput {
     private String bookName;
     private Long bookPrice;
     private String bookAuthor;
+    private Long bookType;
 
     public int getPage() {
         return page;
@@ -55,5 +56,13 @@ public class BookInput {
 	public void setBookCategory(String bookCategory) {
         this.bookCategory = bookCategory;
     }
+
+	public Long getBookType() {
+		return bookType;
+	}
+
+	public void setBookType(Long bookType) {
+		this.bookType = bookType;
+	}
     
 }

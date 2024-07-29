@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import DefaultLayout from '../../DefaultLayout/DefaultLayout';
 import Slide from '../../component/Slide/Slide';
 import CardBookSmall from '../../component/CardBook/CardBookSmall/CardBookSmall.jsx';
-import GrillBook from '../../component/GrillBook/GrillBook';
+import GrillEBook from '../../component/GrillBook/GrillEBook.jsx';
 import { BsNewspaper } from 'react-icons/bs';
 import MediaDate from '../../component/MediaDate/MediaDate';
 import { useState, useEffect } from 'react';
@@ -12,44 +12,154 @@ import axios from 'axios';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { Link } from 'react-router-dom';
+import CardAudioBook from '../../component/CardBook/CardAudioBook/CardAudioBook.jsx';
 
 const cx = classNames.bind(styles);
 
 function Home() {
     let size = 9;
-    let totalBook = 0;
     const [listBookCT1, setListBookCT1] = useState({
         page: 1,
         totalPage: 0,
         bookEntityList: [],
     });
+    const [listAudioBook, setListAudioBook] = useState([]);
     const [listBookCT2, setListBookCT2] = useState([]);
-    const [listBookCT3, setListBookCT3] = useState([]);
-    var settings = {
-        dots: true,
-        slidesToShow: 3,
-    };
 
-    // useEffect(() => {}, [listBookCT1]);      
-
-    useEffect(() => { 
+    useEffect(() => {
+        setTimeout(() => {
+            document.getElementById('tab-all').click();
+        }, 250);
         axios
-        .post('http://localhost:9191/api/e-book-service/get-book-by-page', { page: listBookCT1.page, size: size })
-        .then((response) => {
-            console.log(response);
-            setListBookCT1(response.data.data);
-        })
-        .catch((error) => console.log(error));
-            
-    axios
-        .get('http://localhost:9191/api/e-book-service/get-all-book')
-        .then((response) => {
-            console.log(response);
-            setListBookCT2(response.data.data);
-            totalBook = listBookCT2.length;
-        })
-        .catch((error) => console.log(error));  
+            .get('http://localhost:9191/api/podcast-service/audio-book/get-all-audio-book')
+            .then((response) => {
+                setListAudioBook(response.data.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        axios
+            .get('http://localhost:9191/api/e-book-service/get-all-book')
+            .then((response) => {
+                setListBookCT2(response.data.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }, [listBookCT1.page]);
+
+    function clickTabAll() {
+        if (document.getElementById('tab-all').style.color == '#1ba085') {
+            document.getElementById('option-ebook-all').style.backgroundColor = 'white';
+            document.getElementById('tab-all').style.color = '#1ba085';
+        } else {
+            document.getElementById('option-ebook-all').style.backgroundColor = '#1ba085';
+            document.getElementById('tab-all').style.color = 'white';
+
+            // change color other button
+            document.getElementById('option-ebook-free').style.backgroundColor = 'white';
+            document.getElementById('tab-free').style.color = '#1ba085';
+            document.getElementById('option-ebook-member').style.backgroundColor = 'white';
+            document.getElementById('tab-member').style.color = '#1ba085';
+            document.getElementById('option-ebook-fee').style.backgroundColor = 'white';
+            document.getElementById('tab-fee').style.color = '#1ba085';
+        }
+
+        axios
+            .post('http://localhost:9191/api/e-book-service/get-book-by-page', {
+                page: listBookCT1.page,
+                size: size,
+                bookType: -1,
+            })
+            .then((response) => {
+                setListBookCT1(response.data.data);
+            })
+            .catch((error) => console.log(error));
+    }
+
+    function clickTabFree() {
+        if (document.getElementById('tab-free').style.color == '#1ba085') {
+            document.getElementById('option-ebook-free').style.backgroundColor = 'white';
+            document.getElementById('tab-free').style.color = '#1ba085';
+        } else {
+            document.getElementById('option-ebook-free').style.backgroundColor = '#1ba085';
+            document.getElementById('tab-free').style.color = 'white';
+
+            document.getElementById('option-ebook-all').style.backgroundColor = 'white';
+            document.getElementById('tab-all').style.color = '#1ba085';
+            document.getElementById('option-ebook-member').style.backgroundColor = 'white';
+            document.getElementById('tab-member').style.color = '#1ba085';
+            document.getElementById('option-ebook-fee').style.backgroundColor = 'white';
+            document.getElementById('tab-fee').style.color = '#1ba085';
+        }
+
+        axios
+            .post('http://localhost:9191/api/e-book-service/get-book-by-page', {
+                page: listBookCT1.page,
+                size: size,
+                bookType: 1,
+            })
+            .then((response) => {
+                setListBookCT1(response.data.data);
+            })
+            .catch((error) => console.log(error));
+    }
+
+    function clickTabMember() {
+        if (document.getElementById('tab-member').style.color == '#1ba085') {
+            document.getElementById('option-ebook-member').style.backgroundColor = 'white';
+            document.getElementById('tab-member').style.color = '#1ba085';
+        } else {
+            document.getElementById('option-ebook-member').style.backgroundColor = '#1ba085';
+            document.getElementById('tab-member').style.color = 'white';
+
+            document.getElementById('option-ebook-all').style.backgroundColor = 'white';
+            document.getElementById('tab-all').style.color = '#1ba085';
+            document.getElementById('option-ebook-free').style.backgroundColor = 'white';
+            document.getElementById('tab-free').style.color = '#1ba085';
+            document.getElementById('option-ebook-fee').style.backgroundColor = 'white';
+            document.getElementById('tab-fee').style.color = '#1ba085';
+        }
+
+        axios
+            .post('http://localhost:9191/api/e-book-service/get-book-by-page', {
+                page: listBookCT1.page,
+                size: size,
+                bookType: 2,
+            })
+            .then((response) => {
+                setListBookCT1(response.data.data);
+            })
+            .catch((error) => console.log(error));
+    }
+
+    function clickTabFee() {
+        if (document.getElementById('tab-fee').style.color == '#1ba085') {
+            document.getElementById('option-ebook-fee').style.backgroundColor = 'white';
+            document.getElementById('tab-fee').style.color = '#1ba085';
+        } else {
+            document.getElementById('option-ebook-fee').style.backgroundColor = '#1ba085';
+            document.getElementById('tab-fee').style.color = 'white';
+
+            document.getElementById('option-ebook-all').style.backgroundColor = 'white';
+            document.getElementById('tab-all').style.color = '#1ba085';
+            document.getElementById('option-ebook-free').style.backgroundColor = 'white';
+            document.getElementById('tab-free').style.color = '#1ba085';
+            document.getElementById('option-ebook-member').style.backgroundColor = 'white';
+            document.getElementById('tab-member').style.color = '#1ba085';
+        }
+
+        axios
+            .post('http://localhost:9191/api/e-book-service/get-book-by-page', {
+                page: listBookCT1.page,
+                size: size,
+                bookType: 3,
+            })
+            .then((response) => {
+                setListBookCT1(response.data.data);
+            })
+            .catch((error) => console.log(error));
+    }
 
     return (
         <div className={cx('wrapper')}>
@@ -70,14 +180,35 @@ function Home() {
                                 </li>
                             </ul>
                         </div>
-                        <div className={cx('free-hot')}>
-                            <div className={cx('title-free-hot')}>Tất cả sách</div>
-                            <GrillBook listBookCT1={listBookCT1} setListBookCT1={setListBookCT1} size={size} />
+                        <div className={cx('ebook-grill-box')}>
+                            <div className={cx('title-ebook-grill')}>
+                                <div id="option-ebook-all" className={cx('option-ebook-all')}>
+                                    <a onClick={clickTabAll} id="tab-all" href="#">
+                                        Tất cả sách
+                                    </a>
+                                </div>
+                                <div id="option-ebook-free" className={cx('option-ebook-free')}>
+                                    <a onClick={clickTabFree} id="tab-free" href="#">
+                                        Miễn phí
+                                    </a>
+                                </div>
+                                <div id="option-ebook-member" className={cx('option-ebook-member')}>
+                                    <a onClick={clickTabMember} id="tab-member" href="#">
+                                        Dành cho hội viên
+                                    </a>
+                                </div>
+                                <div id="option-ebook-fee" className={cx('option-ebook-fee')}>
+                                    <a onClick={clickTabFee} id="tab-fee" href="#">
+                                        Sách trả phí
+                                    </a>
+                                </div>
+                            </div>
+                            <GrillEBook listBookCT1={listBookCT1} setListBookCT1={setListBookCT1} size={size} />
                         </div>
                     </div>
                     <div className={cx('content2')}>
-                        <div className={cx('title-rank')}>
-                            <div>BẢNG XẾP HẠNG</div>
+                        <div className={cx('audio-book')}>
+                            <div className={cx('title-audio')}>AUDIO BOOK</div>
                             <div>
                                 <Link className={cx('link-viewall')}>Xem tất cả</Link>
                             </div>
@@ -87,8 +218,8 @@ function Home() {
                                 mouseTracking
                                 disableDotsControls
                                 keyboardNavigation
-                                items={listBookCT2.map((bookCT2) => {
-                                    return <CardBookSmall bookCT2={bookCT2} />;
+                                items={listAudioBook.map((audio) => {
+                                    return <CardAudioBook audio={audio} />;
                                 })}
                                 responsive={{
                                     1324: { items: 6 },

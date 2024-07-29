@@ -27,20 +27,11 @@
                     background-color: rgb(184, 184, 184, 0.1);
                     .heart-icon {
                         cursor: pointer;
-                        color: rgb(112, 112, 110);
-                        margin-bottom: 8px;
-                        font-size: 22px;
-                        &:hover {
-                            color: rgb(238, 171, 26);
-                            font-size: 18px;
-                        }
+                        color: #70706e;
+                        margin-bottom: 10px;
+                        font-size: 27px;
                         &:active {
-                            color: rgb(238, 171, 26);
-                            font-size: 18px;
-                        }
-                        &:focus {
-                            color: rgb(238, 171, 26);
-                            font-size: 18px;
+                            font-size: 25px;
                         }
                     }
                 }
@@ -59,6 +50,14 @@
                 display: flex;
                 flex-direction: column;
                 align-items: start;
+                .require-box {
+                    .require {
+                        color: #ff9900;
+                        .check-condition {
+                            color: #097a63;
+                        }
+                    }
+                }
                 span {
                     color: black;
                     font-size: 14px;
@@ -76,22 +75,36 @@
                     font-weight: 400;
                 }
                 button {
-                    border: 1px solid white;
                     background-color: #1ba085;
                     border-radius: 3px;
                     font-size: 18px;
                     transition: all 0.2s linear;
+                    border: 1px solid white;
                     .read-book {
                         text-decoration: none;
                         font-size: 18px;
                         color: white;
                     }
                     &:hover {
-                        background-color: white;
-                        border: 1px #1ba085 solid;
+                        background-color: #097a63;
                         .read-book {
-                            color: #1ba085;
+                            color: white;
                         }
+                    }
+                }
+                .views {
+                    border-top: 1px solid rgba(33, 33, 33, 0.05);
+                    height: 27.7px;
+                    font-size: 13px;
+                    display: flex;
+                    color: black;
+                    display: flex;
+                    align-items: center;
+                    margin-right: 50px;
+                    .views-icon {
+                        font-size: 18px;
+                        color: #1ba085;
+                        margin-left: 5px;
                     }
                 }
             }

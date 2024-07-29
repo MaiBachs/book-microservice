@@ -33,9 +33,18 @@ public class BookService {
 	@Autowired
 	private BookRepository bookRepository;
 	
-	public BookOutput getBookByPage(int page, int size){
+	public BookOutput getBookByPage(int page, int size, BookInput bookInput){
 		Pageable pageable = PageRequest.of(page, size);
-        Page<BookEntity> bookPage = bookRepository.findAll(pageable);
+        Page<BookEntity> bookPage = null;
+        if(bookInput.getBookType() == 1l) {
+        	bookPage = bookRepository.findByBookType(bookInput.getBookType() ,pageable);
+        }else if(bookInput.getBookType() == 2l){
+        	bookPage = bookRepository.findByBookType(bookInput.getBookType() ,pageable);
+        }else if(bookInput.getBookType() == 3l) {
+        	bookPage = bookRepository.findByBookType(bookInput.getBookType() ,pageable);
+        }else {
+        	bookPage = bookRepository.findAll(pageable);
+        }
         BookOutput bookOutput = new BookOutput();
         bookOutput.setPage(page+1);
         bookOutput.setTotalPage(bookPage.getTotalPages());
@@ -109,5 +118,11 @@ public class BookService {
         }
         stream.close();
         out.close();
+    }
+    
+    public void ViewFilePdf(String preview) {
+    	BookEntity bookEntity = bookRepository.findByPreview(preview);
+    	bookEntity.setView(bookEntity.getView() + 1l);
+    	bookRepository.save(bookEntity);
     }
 }

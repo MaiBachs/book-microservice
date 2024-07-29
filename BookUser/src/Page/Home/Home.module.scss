@@ -38,21 +38,91 @@
                 }
             }
         }
-        .free-hot {
+        .ebook-grill-box {
             padding-left: 20px;
             flex: 1;
             height: 850px;
             max-height: 850px;
             max-width: 850px;
-            .title-free-hot {
+            .title-ebook-grill {
                 width: 820px;
                 height: 35px;
                 color: black;
                 font-size: 20px;
                 text-align: start;
                 border-bottom: 1px solid rgba(33, 33, 33, 0.2);
+                display: flex;
+                .option-ebook-all{
+                    margin-right: 10px;
+                    border: 1px solid #1ba085;
+                    padding: 0 5px;
+                    color: white;
+                    border-radius: 2px;
+                    height: 22px;
+                    display: flex;
+                    justify-content: center;
+                    background-color: #1ba085;
+                    a{
+                        text-decoration: none;
+                        color: white;
+                        font-size: 14px;
+                        font-family: Arial, Helvetica, sans-serif;
+                    }
+                }
+                .option-ebook-free{
+                    margin-right: 10px;
+                    border: 1px solid #1ba085;
+                    padding: 0 5px;
+                    color: white;
+                    border-radius: 2px;
+                    height: 22px;
+                    display: flex;
+                    justify-content: center;
+                    background-color: white;
+                    a{
+                        text-decoration: none;
+                        color: #1ba085;
+                        font-size: 14px;
+                        font-family: Arial, Helvetica, sans-serif;
+                    }
+                }
+                .option-ebook-member{
+                    margin-right: 10px;
+                    border: 1px solid #1ba085;
+                    padding: 0 5px;
+                    color: white;
+                    border-radius: 2px;
+                    height: 22px;
+                    display: flex;
+                    justify-content: center;
+                    background-color: white;
+                    a{
+                        text-decoration: none;
+                        color: #1ba085;
+                        font-size: 14px;
+                        font-family: Arial, Helvetica, sans-serif;
+                    }
+                }
+                .option-ebook-fee{
+                    margin-right: 10px;
+                    border: 1px solid #1ba085;
+                    padding: 0 5px;
+                    color: white;
+                    border-radius: 2px;
+                    height: 22px;
+                    display: flex;
+                    justify-content: center;
+                    background-color: white;
+                    a{
+                        text-decoration: none;
+                        color: #1ba085;
+                        font-size: 14px;
+                        font-family: Arial, Helvetica, sans-serif;
+                    }
+                }
             }
         }
+        
     }
     .content2 {
         width: 1100px;
@@ -60,19 +130,22 @@
         margin-top: 40px;
         background-color: white;
         margin-bottom: 50px;
-        .title-rank {
+        .audio-book {
             width: 1022px;
             height: 35px;
             margin-top: 10px;
-            color: black;
-            font-size: 20px;
-            text-align: start;
             margin-left: 40px;
             height: 50px;
             border-bottom: 1px solid rgb(138, 138, 138, 0.3);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            .title-audio{
+                font-size: 20px;
+                color: #1ba085;
+                text-align: start;
+            font-family: Arial, Helvetica, sans-serif;
+            }
             .link-viewall {
                 font-size: 15px;
                 text-decoration: none;

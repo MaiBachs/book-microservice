@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './ListBookByCategory.module.scss';
 import classNames from 'classnames/bind';
-import GrillBook from '../../component/GrillBook/GrillBook';
+import GrillEBook from '../../component/GrillBook/GrillEBook';
 import { useState, useEffect } from 'react';
-    import axios from 'axios';
+import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import DefaultLayout from '../../DefaultLayout/DefaultLayout';
 
@@ -40,7 +40,7 @@ function ListBookByCategory() {
     return (
         <div className={cx('wrapper')}>
             <DefaultLayout>
-                <GrillBook size={size} listBookCT1={listBookCT1} setListBookCT1={setListBookCT1}></GrillBook>
+                <GrillEBook size={size} listBookCT1={listBookCT1} setListBookCT1={setListBookCT1}></GrillEBook>
             </DefaultLayout>
         </div>
     );

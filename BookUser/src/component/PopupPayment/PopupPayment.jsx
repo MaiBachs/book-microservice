@@ -5,10 +5,7 @@ import Modal from '@mui/material/Modal';
 import styles from './PopupPayment.module.scss';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import toastr from 'toastr';
-import { Link } from '@react-navigation/native';
 
 const cx = classNames.bind(styles);
 
@@ -18,7 +15,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    height: 400,
+    height: 250,
     borderRadius: 3,
     bgcolor: 'background.paper',
     boxShadow: 24,
@@ -26,24 +23,11 @@ const style = {
 };
 
 function PopupPayment(props) {
-    console.log(props.url);
-    console.log(props.termList);
-    const navigate = useNavigate();
-    const [loginForm, setLoginForm] = useState({
-        email: '',
-        password: '',
-    });
     toastr.options = {
         positionClass: 'toast-top-center', // vị trí giữa bên trên màn hình
         toastClass: 'toastr-custom-style', // tùy chỉnh style cho toastr
     };
-
-    const checkInputLogin = (event) => {
-        setLoginForm({
-            ...loginForm,
-            [event.target.name]: event.target.value,
-        });
-    };
+    console.log(props);
 
     return (
         <div>
@@ -59,9 +43,12 @@ function PopupPayment(props) {
                     </Typography>
                     <Typography sx={{ mt: 2 }}>
                         <div className={cx('your-account')}>
-                            {/* <p>Tổng số tiền cần thanh toán: {props.termEntity.cost}</p> */}
+                            <p style={{ color: 'black', textAlign: 'center' }}>
+                                Tổng số tiền cần thanh toán là: {props.cost} vnd
+                            </p>
                         </div>
                     </Typography>
+                    <br />
                     <Typography>
                         <button className={cx('button-login')}>
                             <a className={cx('confirm-payment')} href={props.url.replace(/undefined$/, '')}>

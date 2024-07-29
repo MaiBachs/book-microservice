@@ -1,69 +1,76 @@
-2024-07-20T21:35:47.307+07:00  INFO 24516 --- [main] c.o.s.SecurityLayerJwtApplication        : Starting SecurityLayerJwtApplication using Java 17.0.10 with PID 24516 (E:\book-microservice\SecurityService\target\classes started by maiba in E:\book-microservice\SecurityService)
-2024-07-20T21:35:47.317+07:00  INFO 24516 --- [main] c.o.s.SecurityLayerJwtApplication        : No active profile set, falling back to 1 default profile: "default"
-2024-07-20T21:35:48.775+07:00  INFO 24516 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-07-20T21:35:48.981+07:00  INFO 24516 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 189 ms. Found 2 JPA repository interfaces.
-2024-07-20T21:35:49.406+07:00  INFO 24516 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=fa605ded-b2f1-3f46-bb50-83a94fcef824
-2024-07-20T21:35:49.980+07:00  INFO 24516 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9003 (http)
-2024-07-20T21:35:49.997+07:00  INFO 24516 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-07-20T21:35:49.997+07:00  INFO 24516 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
-2024-07-20T21:35:50.153+07:00  INFO 24516 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-07-20T21:35:50.154+07:00  INFO 24516 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2740 ms
-2024-07-20T21:35:50.364+07:00  INFO 24516 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-07-20T21:35:50.438+07:00  INFO 24516 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.17.Final
-2024-07-20T21:35:50.445+07:00  INFO 24516 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
-2024-07-20T21:35:50.854+07:00  INFO 24516 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-07-20T21:35:50.891+07:00  INFO 24516 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-07-20T21:35:51.384+07:00  INFO 24516 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3e9b3b3c
-2024-07-20T21:35:51.387+07:00  INFO 24516 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-07-20T21:35:51.460+07:00  WARN 24516 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-07-20T21:35:51.462+07:00  WARN 24516 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2024-07-20T21:35:52.907+07:00  INFO 24516 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-07-20T21:35:53.069+07:00  INFO 24516 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-07-20T21:35:53.875+07:00  WARN 24516 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-07-20T21:35:54.232+07:00  INFO 24516 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5220e6ff, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@602d5417, org.springframework.security.web.context.SecurityContextHolderFilter@3d00c2ae, org.springframework.security.web.header.HeaderWriterFilter@3a3375d8, org.springframework.security.web.authentication.logout.LogoutFilter@33aa4326, com.ons.securitylayerJwt.security.JwtAuthenticationFilter@53fb3e1b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3eb7ff78, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1c5f6292, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@75128cf, org.springframework.security.web.session.SessionManagementFilter@7c74ef4a, org.springframework.security.web.access.ExceptionTranslationFilter@5fa0943d, org.springframework.security.web.access.intercept.AuthorizationFilter@20425fab]
-2024-07-20T21:35:54.776+07:00  INFO 24516 --- [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
-2024-07-20T21:35:55.023+07:00  WARN 24516 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2024-07-20T21:35:55.101+07:00  INFO 24516 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
-2024-07-20T21:35:55.149+07:00  INFO 24516 --- [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
-2024-07-20T21:35:55.156+07:00  INFO 24516 --- [main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2024-07-20T21:35:55.187+07:00  INFO 24516 --- [main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
-2024-07-20T21:35:55.187+07:00  INFO 24516 --- [main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
-2024-07-20T21:35:55.188+07:00  INFO 24516 --- [main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
-2024-07-20T21:35:55.188+07:00  INFO 24516 --- [main] com.netflix.discovery.DiscoveryClient    : Application is null : false
-2024-07-20T21:35:55.188+07:00  INFO 24516 --- [main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
-2024-07-20T21:35:55.188+07:00  INFO 24516 --- [main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
-2024-07-20T21:35:55.189+07:00  INFO 24516 --- [main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
-2024-07-20T21:35:55.573+07:00  INFO 24516 --- [main] com.netflix.discovery.DiscoveryClient    : The response status is 200
-2024-07-20T21:35:55.575+07:00  INFO 24516 --- [main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
-2024-07-20T21:35:55.580+07:00  INFO 24516 --- [main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
-2024-07-20T21:35:55.588+07:00  INFO 24516 --- [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1721486155586 with initial instances count: 1
-2024-07-20T21:35:55.592+07:00  INFO 24516 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application SERCURIY-SERVICE with eureka with status UP
-2024-07-20T21:35:55.593+07:00  INFO 24516 --- [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1721486155592, current=UP, previous=STARTING]
-2024-07-20T21:35:55.594+07:00  INFO 24516 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERCURIY-SERVICE/MayBacks:sercuriy-service:9003: registering service...
-2024-07-20T21:35:55.605+07:00  WARN 24516 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
-2024-07-20T21:35:55.612+07:00  INFO 24516 --- [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-07-20T21:35:55.614+07:00  INFO 24516 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-07-20T21:35:55.627+07:00  INFO 24516 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-07-20T21:35:55.627+07:00  INFO 24516 --- [main] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
-2024-07-20T21:35:55.648+07:00  INFO 24516 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERCURIY-SERVICE/MayBacks:sercuriy-service:9003 - registration status: 204
-2024-07-20T21:35:55.650+07:00  INFO 24516 --- [main] com.netflix.discovery.DiscoveryClient    : Unregistering ...
-2024-07-20T21:35:55.656+07:00  INFO 24516 --- [main] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERCURIY-SERVICE/MayBacks:sercuriy-service:9003 - deregister  status: 200
-2024-07-20T21:35:55.663+07:00  INFO 24516 --- [main] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
-2024-07-20T21:35:55.664+07:00  INFO 24516 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2024-07-20T21:35:55.679+07:00  INFO 24516 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-07-20T21:35:55.699+07:00 ERROR 24516 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Web server failed to start. Port 9003 was already in use.
-
-Action:
-
-Identify and stop the process that's listening on port 9003 or configure this application to listen on another port.
-
+2024-07-29T15:09:01.489+07:00  INFO 7224 --- [main] c.o.s.SecurityLayerJwtApplication        : Starting SecurityLayerJwtApplication using Java 17.0.10 with PID 7224 (E:\book-microservice\SecurityService\target\classes started by maiba in E:\book-microservice\SecurityService)
+2024-07-29T15:09:01.495+07:00  INFO 7224 --- [main] c.o.s.SecurityLayerJwtApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-07-29T15:09:02.668+07:00  INFO 7224 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-29T15:09:02.862+07:00  INFO 7224 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 185 ms. Found 2 JPA repository interfaces.
+2024-07-29T15:09:03.149+07:00  INFO 7224 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=fa605ded-b2f1-3f46-bb50-83a94fcef824
+2024-07-29T15:09:03.614+07:00  INFO 7224 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9003 (http)
+2024-07-29T15:09:03.626+07:00  INFO 7224 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-29T15:09:03.626+07:00  INFO 7224 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2024-07-29T15:09:03.732+07:00  INFO 7224 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-29T15:09:03.733+07:00  INFO 7224 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2177 ms
+2024-07-29T15:09:03.887+07:00  INFO 7224 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-29T15:09:03.960+07:00  INFO 7224 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.17.Final
+2024-07-29T15:09:03.963+07:00  INFO 7224 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-07-29T15:09:04.321+07:00  INFO 7224 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-29T15:09:04.353+07:00  INFO 7224 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-29T15:09:04.697+07:00  INFO 7224 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5178345d
+2024-07-29T15:09:04.699+07:00  INFO 7224 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-29T15:09:04.760+07:00  WARN 7224 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-07-29T15:09:04.762+07:00  WARN 7224 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-07-29T15:09:06.423+07:00  INFO 7224 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-29T15:09:06.585+07:00  INFO 7224 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-29T15:09:07.107+07:00  WARN 7224 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-29T15:09:07.384+07:00  INFO 7224 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@100d5018, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6a25c9ad, org.springframework.security.web.context.SecurityContextHolderFilter@56c7e2d1, org.springframework.security.web.header.HeaderWriterFilter@e00c94e, org.springframework.security.web.authentication.logout.LogoutFilter@106f0051, com.ons.securitylayerJwt.security.JwtAuthenticationFilter@492a220e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2c34ce24, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@31f90517, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3e7940b3, org.springframework.security.web.session.SessionManagementFilter@225b460a, org.springframework.security.web.access.ExceptionTranslationFilter@31b4c003, org.springframework.security.web.access.intercept.AuthorizationFilter@3359217d]
+2024-07-29T15:09:07.740+07:00  INFO 7224 --- [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2024-07-29T15:09:08.030+07:00  WARN 7224 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2024-07-29T15:09:08.097+07:00  INFO 7224 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2024-07-29T15:09:08.133+07:00  INFO 7224 --- [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2024-07-29T15:09:08.140+07:00  INFO 7224 --- [main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T15:09:08.163+07:00  INFO 7224 --- [main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2024-07-29T15:09:08.163+07:00  INFO 7224 --- [main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2024-07-29T15:09:08.163+07:00  INFO 7224 --- [main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2024-07-29T15:09:08.163+07:00  INFO 7224 --- [main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2024-07-29T15:09:08.163+07:00  INFO 7224 --- [main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2024-07-29T15:09:08.163+07:00  INFO 7224 --- [main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2024-07-29T15:09:08.163+07:00  INFO 7224 --- [main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2024-07-29T15:09:08.490+07:00  INFO 7224 --- [main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2024-07-29T15:09:08.494+07:00  INFO 7224 --- [main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2024-07-29T15:09:08.498+07:00  INFO 7224 --- [main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2024-07-29T15:09:08.505+07:00  INFO 7224 --- [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1722240548504 with initial instances count: 2
+2024-07-29T15:09:08.513+07:00  INFO 7224 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application SERCURIY-SERVICE with eureka with status UP
+2024-07-29T15:09:08.514+07:00  INFO 7224 --- [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1722240548514, current=UP, previous=STARTING]
+2024-07-29T15:09:08.516+07:00  INFO 7224 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERCURIY-SERVICE/MayBacks:sercuriy-service:9003: registering service...
+2024-07-29T15:09:08.546+07:00  INFO 7224 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9003 (http) with context path ''
+2024-07-29T15:09:08.547+07:00  INFO 7224 --- [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 9003
+2024-07-29T15:09:08.557+07:00  INFO 7224 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERCURIY-SERVICE/MayBacks:sercuriy-service:9003 - registration status: 204
+2024-07-29T15:09:08.707+07:00  INFO 7224 --- [main] c.o.s.SecurityLayerJwtApplication        : Started SecurityLayerJwtApplication in 8.04 seconds (process running for 9.032)
+2024-07-29T15:14:08.172+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T15:19:08.182+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T15:24:08.195+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T15:29:08.207+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T15:34:08.220+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T15:39:08.231+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T15:44:08.237+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T15:49:08.240+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T15:54:08.258+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T15:59:08.272+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T16:04:08.284+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T16:09:08.299+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T16:14:08.305+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T16:19:08.315+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T16:24:08.326+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T16:29:08.340+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T16:34:08.343+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T16:39:08.347+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T16:44:08.354+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T16:49:08.360+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T16:54:08.375+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T16:59:08.379+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T17:04:08.381+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T17:09:08.399+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T17:14:08.402+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T17:19:08.409+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T17:24:08.419+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T17:29:08.431+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T17:34:08.436+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-29T17:39:08.450+07:00  INFO 7224 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration

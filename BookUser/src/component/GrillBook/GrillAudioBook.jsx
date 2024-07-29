@@ -1,60 +1,52 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CardBookMedium from '../CardBook/CardBookMedium/CardBookMedium';
-import './GrillBook.css';
+import CardAudioBook from '../CardBook/CardAudioBook/CardAudioBook';
+import './GrillAudioBook.css';
 
-function GrillBook(props) {
-    const list1 = [...props.listBookCT1.bookEntityList];
+const GrillAudioBook = (props) => {
+    const list1 = [...props.listAudioBook.audioBooks];
     let list2 = [];
-    let page = props.listBookCT1.page;
-    let sqrtsize = Math.sqrt(props.size);
-    for (let i = 0; i < list1.length; i += sqrtsize) {
-        if (sqrtsize === 3) {
-            if (list1[i + 1] && list1[i + 2]) {
-                list2.push([...list1.slice(i, i + 3)]);
-            } else if (list1[i + 1] && !list1[i + 2]) {
-                list2.push([...list1.slice(i, (i = 2))]);
-            } else {
-                list2.push([...list1.slice(i, i + 1)]);
-            }
-        } else if (sqrtsize === 4) {
-            if (list1[i + 1] && list1[i + 2] && list1[i + 3]) {
+    let page = props.listAudioBook.page;
+    let rowNum = props.size / 4;
+    for (let i = 0; i < list1.length; i += 4) {
+        if (rowNum === 3) {
+            if (list1[i] && list1[i + 1] && list1[i + 2] && list1[i + 3]) {
                 list2.push([...list1.slice(i, i + 4)]);
-            } else if (list1[i + 1] && list1[i + 2]) {
+            } else if (list1[i] && list1[i + 1] && list1[i + 2]) {
                 list2.push([...list1.slice(i, i + 3)]);
-            } else if (list1[i + 1] && !list1[i + 2]) {
-                list2.push([...list1.slice(i, (i = 2))]);
+            } else if (list1[i] && list1[i + 1]) {
+                list2.push([...list1.slice(i, i + 2)]);
             } else {
                 list2.push([...list1.slice(i, i + 1)]);
             }
         }
     }
     let indexPage = [];
-    for (let i = 1; i <= props.listBookCT1.totalPage; i++) {
+    for (let i = 1; i <= props.listAudioBook.totalPage; i++) {
         indexPage.push(i);
     }
 
     const handleChangePage = (index) => {
         if (index === 'previos') {
-            props.setListBookCT1({
-                ...props.listBookCT1,
+            props.setListAudioBook({
+                ...props.listAudioBook,
                 page: page - 1,
             });
         } else if (index === 'next') {
-            props.setListBookCT1({
-                ...props.listBookCT1,
+            props.setListAudioBook({
+                ...props.listAudioBook,
                 page: page + 1,
             });
         } else {
-            props.setListBookCT1({
-                ...props.listBookCT1,
+            props.setListAudioBook({
+                ...props.listAudioBook,
                 page: index,
             });
         }
     };
     return (
-        <>
+        <div class="wrapper">
             <div class="container ms-2 mt-2">
                 <div class="row test">
                     {list2.map((bookList) => {
@@ -63,13 +55,12 @@ function GrillBook(props) {
                                 {bookList.map((book) => {
                                     return (
                                         <>
-                                            <div class="col-auto p-2">
-                                                <CardBookMedium book={book} />
+                                            <div class="col-3 p-2" style={{ right: '0px' }}>
+                                                <CardAudioBook audio={book} />
                                             </div>
                                         </>
                                     );
                                 })}
-                                <div class="w-100"></div>
                             </>
                         );
                     })}
@@ -77,7 +68,7 @@ function GrillBook(props) {
             </div>
             <nav aria-label="..." className="pagin mt-3">
                 <ul class="pagination pagination-sm justify-content-end mr-5">
-                    {props.listBookCT1.page <= 1 ? (
+                    {props.listAudioBook.page <= 1 ? (
                         <li class="page-item disabled" key={'previos'}>
                             <button class="page-link" tabindex="-1">
                                 {'<'}
@@ -99,7 +90,7 @@ function GrillBook(props) {
                     {indexPage.map((index) => {
                         return (
                             <>
-                                {index === props.listBookCT1.page ? (
+                                {index === props.listAudioBook.page ? (
                                     <li key={index} class="page-item active ms-2">
                                         <button class="page-link">{index}</button>
                                     </li>
@@ -118,7 +109,7 @@ function GrillBook(props) {
                             </>
                         );
                     })}
-                    {props.listBookCT1.page >= props.listBookCT1.totalPage ? (
+                    {props.listAudioBook.page >= props.listAudioBook.totalPage ? (
                         <li class="page-item disabled" key={'next'}>
                             <button class="page-link ms-2">{'>'}</button>
                         </li>
@@ -135,8 +126,8 @@ function GrillBook(props) {
                     )}
                 </ul>
             </nav>
-        </>
+        </div>
     );
-}
+};
 
-export default GrillBook;
+export default GrillAudioBook;

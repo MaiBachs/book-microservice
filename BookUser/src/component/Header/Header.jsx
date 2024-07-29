@@ -10,6 +10,11 @@ import { useState } from 'react';
 import Login from './Login';
 import { useNavigate } from 'react-router-dom';
 import Register from './Register';
+import { CiMenuBurger } from 'react-icons/ci';
+import { MdMenuBook } from 'react-icons/md';
+import { MdWorkHistory } from 'react-icons/md';
+import { FaList } from 'react-icons/fa';
+import { IoLogOutOutline } from 'react-icons/io5';
 
 const { SubMenu } = Menu;
 
@@ -32,6 +37,16 @@ function Header(props) {
         setValue(event.target.value);
         handleMouseEnter(event);
     };
+    const listCategory = [
+        'Trinh thám - Kinh dị',
+        'Viễn tưởng - Giả tưởng',
+        'Khởi nghiệp - Làm giàu',
+        'Marketing - Bán hàng',
+        'Quản trị - Lãnh đạo',
+        'Tài chính cá nhân',
+        'Phát triển cá nhân',
+        'Doanh nhân - Bài học kinh doanh',
+    ];
 
     const handleSearch = (event) => {
         if (event.keyCode === 13) {
@@ -71,11 +86,30 @@ function Header(props) {
     const handleClickSearch = () => {
         navigate('/home');
     };
+
     const handleMouseEnter = (event) => {
         if (props.check === true) {
             event.target.focus();
         }
     };
+
+    function displayMenuAcount() {
+        if (document.getElementById('dropdown').style.display == 'block') {
+            document.getElementById('dropdown').style.display = 'none';
+        } else {
+            document.getElementById('dropdown').style.display = 'block';
+        }
+    }
+
+    document.addEventListener('mouseup', function (event) {
+        var pol = document.getElementById('dropdown');
+        if (pol == null) {
+            return;
+        }
+        if (event.target != pol && event.target.parentNode != pol) {
+            pol.style.display = 'none';
+        }
+    });
 
     return (
         <div className={cx('wrapper')}>
@@ -142,9 +176,38 @@ function Header(props) {
                         </Tippy>
                     )}
                     {localStorage.getItem('token') ? (
-                        <button onClick={handleLogout}>ĐĂNG XUẤT</button>
+                        <>
+                            {/* <button className={cx('menu-account')} onClick={handleLogout} >{localStorage.getItem('userName')}</button> */}
+                            <button className={cx('menu-account')} onClick={displayMenuAcount}>
+                                <CiMenuBurger className={cx('menu-icon')} /> {localStorage.getItem('userName')}
+                            </button>
+                            <div id="dropdown" className={cx('dropdown')}>
+                                <p>
+                                    <Link to="/bookcase" style={{ height: '100%' }}>
+                                        <MdMenuBook style={{ marginTop: '-10x' }} /> Tủ sách của bạn
+                                    </Link>
+                                </p>
+                                <p>
+                                    <Link to="/historypayment">
+                                        <MdWorkHistory style={{ marginTop: '-4px' }} /> Lịch sử giao dich
+                                    </Link>
+                                </p>
+                                <p>
+                                    <Link to="#">
+                                        <FaList style={{ marginTop: '-4px' }} /> Danh sách phát
+                                    </Link>
+                                </p>
+                                <p className={cx('logout')}>
+                                    <Link to="#" style={{ color: 'white' }} onClick={handleLogout}>
+                                        <IoLogOutOutline style={{ marginTop: '-4px' }} /> ĐĂNG XUẤT
+                                    </Link>
+                                </p>
+                            </div>
+                        </>
                     ) : (
-                        <button onClick={handleOpen}>ĐĂNG NHẬP</button>
+                        <button className={cx('login')} onClick={handleOpen}>
+                            ĐĂNG NHẬP
+                        </button>
                     )}
                     <Login open={open} handleOpen={handleOpen} handleClose={handleClose} handleOpen1={handleOpen1} />
                     <Register open1={open1} handleOpen1={handleOpen1} handleClose1={handleClose1} />
@@ -157,78 +220,78 @@ function Header(props) {
                             <AiOutlineUnorderedList className={cx('list-icon')} />
                         </span>
                         <div>
-                            <Menu className={cx('menu')}>
-                                <SubMenu className={cx('submenu')} title="Danh mục">
-                                    <Menu.Item key="setting:1">
+                            <Menu mode="vertical" className={cx('menu')}>
+                                <SubMenu className={cx('submenu')} title="Danh mục Ebook">
+                                    <Menu.Item key="setting:0">
                                         <Link
                                             style={{ textDecoration: 'none' }}
                                             to="/bookbycategory"
-                                            state={'Trinh thám - Kinh dị'}
+                                            state={listCategory[0]}
                                         >
-                                            Trinh thám - Kinh dị
+                                            {listCategory[0]}
                                         </Link>
                                     </Menu.Item>
                                     <Menu.Item key="setting:2">
                                         <Link
                                             style={{ textDecoration: 'none' }}
                                             to="/bookbycategory"
-                                            state={'Viễn tưởng - Giả tưởng'}
+                                            state={listCategory[1]}
                                         >
-                                            Viễn tưởng - Giả tưởng
+                                            {listCategory[1]}
                                         </Link>
                                     </Menu.Item>
                                     <Menu.Item key="setting:3">
                                         <Link
                                             style={{ textDecoration: 'none' }}
                                             to="/bookbycategory"
-                                            state={'Khởi nghiệp - Làm giàu'}
+                                            state={listCategory[2]}
                                         >
-                                            Khởi nghiệp - Làm giàu
+                                            {listCategory[2]}
                                         </Link>
                                     </Menu.Item>
                                     <Menu.Item key="setting:4">
                                         <Link
                                             style={{ textDecoration: 'none' }}
                                             to="/bookbycategory"
-                                            state={'Marketing - Bán hàng'}
+                                            state={listCategory[3]}
                                         >
-                                            Marketing - Bán hàng
+                                            {listCategory[3]}
                                         </Link>
                                     </Menu.Item>
                                     <Menu.Item key="setting:5">
                                         <Link
                                             style={{ textDecoration: 'none' }}
                                             to="/bookbycategory"
-                                            state={'Quản trị - Lãnh đạo'}
+                                            state={listCategory[4]}
                                         >
-                                            Quản trị - Lãnh đạo
+                                            {listCategory[4]}
                                         </Link>
                                     </Menu.Item>
                                     <Menu.Item key="setting:6">
                                         <Link
                                             style={{ textDecoration: 'none' }}
                                             to="/bookbycategory"
-                                            state={'Tài chính cá nhân'}
+                                            state={listCategory[5]}
                                         >
-                                            Tài chính cá nhân
+                                            {listCategory[5]}
                                         </Link>
                                     </Menu.Item>
                                     <Menu.Item key="setting:7">
                                         <Link
                                             style={{ textDecoration: 'none' }}
                                             to="/bookbycategory"
-                                            state={'Phát triển cá nhân'}
+                                            state={listCategory[6]}
                                         >
-                                            Phát triển cá nhân
+                                            {listCategory[6]}
                                         </Link>
                                     </Menu.Item>
                                     <Menu.Item key="setting:8">
                                         <Link
                                             style={{ textDecoration: 'none' }}
                                             to="/bookbycategory"
-                                            state={'Doanh nhân - Bài học kinh doanh'}
+                                            state={listCategory[7]}
                                         >
-                                            Doanh nhân - Bài học kinh doanh
+                                            {listCategory[7]}
                                         </Link>
                                     </Menu.Item>
                                 </SubMenu>
@@ -247,23 +310,20 @@ function Header(props) {
                         </Link>
                     </li>
                     <li>
-                        <Link className={cx('link-menu')} to="/chat">Thảo luận trực tuyến</Link>
+                        <Link className={cx('link-menu')} to="/chat">
+                            Thảo luận trực tuyến
+                        </Link>
                     </li>
                     <li>
-                        <Link className={cx('link-menu-not')}>Khuyên đọc</Link>
+                        <div style={{ fontSize: '14px' }}>------</div>
                     </li>
                     <li>
-                        {/* <Link className={cx('link-menu')}>
-                            Podcast - HV
-                        </Link> */}
-                        <div  className={cx('dropdown')}>
-                            <button className={cx('dropbtn')}>PodCast</button>
-                            <div className={cx('dropdown-content')}>
-                                <Link className={cx('link-podcast')} to="/audiobook">Audio Book</Link>
-                                <Link className={cx('link-podcast')} to="/podcast">Đời sống</Link>
-                                <a href="#"></a>
-                            </div>
-                        </div>
+                        <Link className={cx('link-menu')} to="/audiobook">
+                            Audio Book
+                        </Link>
+                    </li>
+                    <li>
+                        <Link className={cx('link-menu-not')}>PodCast</Link>
                     </li>
                 </ul>
             </div>

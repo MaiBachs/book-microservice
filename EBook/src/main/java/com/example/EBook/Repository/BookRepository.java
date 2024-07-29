@@ -22,4 +22,8 @@ public interface BookRepository extends JpaRepository<BookEntity, Long> {
 			+ "and (:bookPrice = 0 and be.bookPrice = 0) or (:bookPrice = 1 and be.bookPrice >= 1) "
 			+ "order by bookName asc ")
 	Page<BookEntity> searchBookByPage(String bookName, String bookAuthor, String bookCategory, Long bookPrice, Pageable pageable);
+	
+	BookEntity findByPreview(String preview);
+	
+	Page<BookEntity> findByBookType(Long bookType, Pageable pageable);
 }

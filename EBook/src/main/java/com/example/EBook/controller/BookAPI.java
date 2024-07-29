@@ -37,6 +37,7 @@ public class BookAPI {
     @GetMapping(value = "/download")
     public ResponseEntity<InputStreamResource> downloadPdf(@RequestParam String pdfFileName) throws IOException {
     	FileSystemResource pdfFile = new FileSystemResource(bookPath + "/" + pdfFileName);
+    	bookService.ViewFilePdf(pdfFileName);
         return ResponseEntity
                 .ok()
                 .contentLength(pdfFile.contentLength())
@@ -69,7 +70,7 @@ public class BookAPI {
     }
     @PostMapping(value = "/get-book-by-page")
     public ResponseEntity<GeneralResponse<BookOutput>> findBookByPage(@RequestBody BookInput bookInput){
-        BookOutput bookOutput = bookService.getBookByPage(bookInput.getPage()-1, bookInput.getSize());
+        BookOutput bookOutput = bookService.getBookByPage(bookInput.getPage()-1, bookInput.getSize(), bookInput);
         return responseFactory.success(bookOutput);
     }
 }

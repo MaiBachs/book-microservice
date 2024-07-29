@@ -36,7 +36,7 @@ function CardBookMedium(props) {
                 </div>
                 <div className={cx('views')}>
                     <AiOutlineEye className={cx('views-icon')} />
-                    <span>Lượt xem</span>
+                    <span>{props.book.view}: Lượt xem</span>
                 </div>
             </div>
         </div>

@@ -10,6 +10,8 @@ import Chat from './Page/Chat/Chat.jsx';
 import PdfFileView from './Page/PdfFileView/PdfFileView.jsx';
 import AudioBook from './Page/AudioBook/AudioBook.jsx';
 import DetailAudioBook from './Page/DetailAudioBook/DetailAudioBook.jsx';
+import BookCase from './Page/BookCase/BookCase.jsx';
+import HistoryPaymentBook from './Page/HistoryPayment/HistoryPaymentBook.jsx';
 
 function App() {
     return (
@@ -27,6 +29,8 @@ function App() {
                         <Route path="/pdffileview" element={<PdfFileView />}></Route>
                         <Route path="/audiobook" element={<AudioBook />}></Route>
                         <Route path="/detailaudiobook" element={<DetailAudioBook />}></Route>
+                        <Route path="/bookcase" element={<BookCase />}></Route>
+                        <Route path="/historypayment" element={<HistoryPaymentBook />}></Route>
 
                         <Route path="*" element={<Navigate to="/home" />}></Route>
                     </Routes>

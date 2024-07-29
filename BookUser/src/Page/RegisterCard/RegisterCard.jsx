@@ -5,21 +5,19 @@ import { MdCardMembership } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import toastr from 'toastr';
-import { useNavigate } from 'react-router-dom';
 import PopupPayment from '../../component/PopupPayment/PopupPayment';
 
 const cx = classNames.bind(styles);
 
-function RegisterCard(props) {
-    const currentDate = new Date();
-    const [url, setUrl] = useState("");
+function RegisterCard() {
+    const [url, setUrl] = useState('');
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     let json = {
         userId: localStorage.getItem('userId'),
-        term: ""
+        term: '',
     };
 
     toastr.options = {
@@ -28,71 +26,66 @@ function RegisterCard(props) {
     };
 
     const [termList, setTermList] = useState([]);
+    const [cost, setCost] = useState();
     let termEntity = {};
 
-
-    useEffect(()=>{
+    useEffect(() => {
         axios
             .get('http://localhost:9191/api/book-service/term/search-all')
-            .then((response)=>{
+            .then((response) => {
                 setTermList(response.data);
             })
             .catch((error) => {
                 console.log(error);
             });
-    },[])
-
-    const navigate = useNavigate();
+    }, []);
 
     const handleRegisterCard = (term) => {
         json.term = term;
         axios
-            .get('http://localhost:9191/api/book-service/member/check-register', {params: {
-                userId: localStorage.getItem('userId'),
-            }})
+            .get('http://localhost:9191/api/book-service/member/check-register', {
+                params: {
+                    userId: localStorage.getItem('userId'),
+                },
+            })
             .then((response) => {
-                console.log(response.data);
                 if (response.data.userId != undefined || response.data.userId != null) {
-                    toastr.warning(`Tài khoản đã được đăng kí hội viên, từ ngày ${response.data.startDate} đến ngày ${response.data.endDate}`);
+                    toastr.warning(
+                        `Tài khoản đã được đăng kí hội viên, từ ngày ${response.data.startDate} đến ngày ${response.data.endDate}`,
+                    );
                     return;
-                }else  {
-                    for(let i =0; i < termList.length; i++){
-                        if(termList[i].term == term){
+                } else {
+                    for (let i = 0; i < termList.length; i++) {
+                        if (termList[i].term == term) {
                             termEntity = termList[i];
+                            setCost(termList[i].cost);
                             break;
                         }
                     }
                     var body = {
                         amount: termEntity.cost,
-                        orderInfo: `package member 12 month-${localStorage.getItem('userId')}`+"-"+`${termEntity.term}`
-                    }
+                        orderInfo:
+                            `Sign up for membership package-${localStorage.getItem('userId')}` +
+                            '-' +
+                            `${termEntity.term}` +
+                            '-' +
+                            `forRegisMember`,
+                    };
                     axios({
                         method: 'post',
                         url: 'http://localhost:9191/api/book-service/vnpay/submitOrder',
                         data: body,
-                        headers: { "Content-Type": "multipart/form-data","Access-Control-Allow-Origin": "*" },
+                        headers: { 'Content-Type': 'multipart/form-data', 'Access-Control-Allow-Origin': '*' },
                     })
-                    .then((response)=>{
-                        console.log(response.data);
-                        const urlArray = response.data.split(" ");
-                        setUrl(urlArray[0]+urlArray[1]);
-                        console.log(url);
-                        handleOpen();
-
-                        // navigate(urlArray[0]+urlArray[1])s
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
+                        .then((response) => {
+                            const urlArray = response.data.split(' ');
+                            setUrl(urlArray[0] + urlArray[1]);
+                            handleOpen();
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
                 }
-                // axios
-                //     .post('http://localhost:9191/api/book-service/member/register', { ...json })
-                //     .then((response) => {
-                //         alert(`Bạn đã trở thành hội viên của waka từ ngày ${response.data.startDate} đến ngày ${response.data.endDate}`);
-                //     })
-                //     .catch((error) => {
-                //         console.log(error);
-                //     });
             })
             .catch((error) => {
                 console.log(error);
@@ -101,7 +94,14 @@ function RegisterCard(props) {
 
     return (
         <div className={cx('wrapper')}>
-            <PopupPayment url = {url} termList = {termList} open={open} handleOpen={handleOpen} handleClose={handleClose}/>
+            <PopupPayment
+                cost={cost}
+                url={url}
+                termList={termList}
+                open={open}
+                handleOpen={handleOpen}
+                handleClose={handleClose}
+            />
             <div className={cx('header')}>
                 <div className={cx('logo')}>
                     <img src="	https://ebook.waka.vn/themes/desktop/images/logo_waka_epay.png?v=1" />
@@ -122,7 +122,12 @@ function RegisterCard(props) {
                             </div>
                             <p className={cx('benefit-title')}>3 tháng làm hội viên waka</p>
                             <div className={cx('benefit-button')}>
-                                <Link onClick={()=>{handleRegisterCard(3)}} className={cx('benefit-button-detail')}>
+                                <Link
+                                    onClick={() => {
+                                        handleRegisterCard(3);
+                                    }}
+                                    className={cx('benefit-button-detail')}
+                                >
                                     Đăng kí
                                 </Link>
                             </div>
@@ -133,7 +138,12 @@ function RegisterCard(props) {
                             </div>
                             <p className={cx('benefit-title')}>6 tháng làm hội viên waka</p>
                             <div className={cx('benefit-button')}>
-                                <Link onClick={()=>{handleRegisterCard(6)}} className={cx('benefit-button-detail')}>
+                                <Link
+                                    onClick={() => {
+                                        handleRegisterCard(6);
+                                    }}
+                                    className={cx('benefit-button-detail')}
+                                >
                                     Đăng kí
                                 </Link>
                             </div>
@@ -144,7 +154,12 @@ function RegisterCard(props) {
                             </div>
                             <p className={cx('benefit-title')}>12 tháng làm hội viên waka</p>
                             <div className={cx('benefit-button')}>
-                                <Link onClick={()=>{handleRegisterCard(12)}} className={cx('benefit-button-detail')}>
+                                <Link
+                                    onClick={() => {
+                                        handleRegisterCard(12);
+                                    }}
+                                    className={cx('benefit-button-detail')}
+                                >
                                     Đăng kí
                                 </Link>
                             </div>
@@ -159,21 +174,23 @@ function RegisterCard(props) {
             </div>
             <div className={cx('body')}>
                 <div className={cx('account')}>
-                    <h4>
-                        Trở thành hội viên của Waka bạn cần nắm rõ những điều sau
-                    </h4>
+                    <h4>Trở thành hội viên của Waka bạn cần nắm rõ những điều sau</h4>
                     <br />
                     <p>
-                        1. Đăng ký hội viên: Trước hết, bạn cần tham gia chương trình thành viên của Waka và hoàn tất quá trình đăng ký.
+                        1. Đăng ký hội viên: Trước hết, bạn cần tham gia chương trình thành viên của Waka và hoàn tất
+                        quá trình đăng ký.
                     </p>
                     <p>
-                        2. Khám phá thư viện sách trực tuyến: Duyệt qua bộ sưu tập đa dạng của Waka và chọn sách mà bạn muốn đọc. Có thể bạn sẽ được tận hưởng sách điện tử, âm thanh, hoặc cả hai.
+                        2. Khám phá thư viện sách trực tuyến: Duyệt qua bộ sưu tập đa dạng của Waka và chọn sách mà bạn
+                        muốn đọc. Có thể bạn sẽ được tận hưởng sách điện tử, âm thanh, hoặc cả hai.
                     </p>
                     <p>
-                        3. Thưởng thức đọc sách: Mọi sách đều sẵn có trực tuyến, không cần mang theo thẻ hội viên. Bạn có thể bắt đầu đọc ngay trên trang web của Waka và tận hưởng trải nghiệm đọc sách thuận tiện.
+                        3. Thưởng thức đọc sách: Mọi sách đều sẵn có trực tuyến, không cần mang theo thẻ hội viên. Bạn
+                        có thể bắt đầu đọc ngay trên trang web của Waka và tận hưởng trải nghiệm đọc sách thuận tiện.
                     </p>
                     <p>
-                        4. Tìm hiểu về các tính năng: Khám phá các tính năng hữu ích như đánh dấu trang, tìm kiếm nhanh, và gợi ý sách dựa trên sở thích cá nhân của bạn.
+                        4. Tìm hiểu về các tính năng: Khám phá các tính năng hữu ích như đánh dấu trang, tìm kiếm nhanh,
+                        và gợi ý sách dựa trên sở thích cá nhân của bạn.
                     </p>
                 </div>
             </div>

@@ -1,0 +1,73 @@
+2024-07-28T21:23:57.865+07:00  INFO 12160 --- [main] c.o.s.SecurityLayerJwtApplication        : Starting SecurityLayerJwtApplication using Java 17.0.10 with PID 12160 (E:\book-microservice\SecurityService\target\classes started by maiba in E:\book-microservice\SecurityService)
+2024-07-28T21:23:57.872+07:00  INFO 12160 --- [main] c.o.s.SecurityLayerJwtApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-07-28T21:23:59.053+07:00  INFO 12160 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-28T21:23:59.333+07:00  INFO 12160 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 270 ms. Found 2 JPA repository interfaces.
+2024-07-28T21:23:59.693+07:00  INFO 12160 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=fa605ded-b2f1-3f46-bb50-83a94fcef824
+2024-07-28T21:24:00.249+07:00  INFO 12160 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9003 (http)
+2024-07-28T21:24:00.260+07:00  INFO 12160 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-28T21:24:00.261+07:00  INFO 12160 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2024-07-28T21:24:00.397+07:00  INFO 12160 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-28T21:24:00.398+07:00  INFO 12160 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2467 ms
+2024-07-28T21:24:00.584+07:00  INFO 12160 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-28T21:24:00.643+07:00  INFO 12160 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.17.Final
+2024-07-28T21:24:00.647+07:00  INFO 12160 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-07-28T21:24:00.977+07:00  INFO 12160 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-28T21:24:01.006+07:00  INFO 12160 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-28T21:24:01.406+07:00  INFO 12160 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2864d34d
+2024-07-28T21:24:01.410+07:00  INFO 12160 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-28T21:24:01.467+07:00  WARN 12160 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-07-28T21:24:01.469+07:00  WARN 12160 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-07-28T21:24:02.619+07:00  INFO 12160 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-28T21:24:02.749+07:00  INFO 12160 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-28T21:24:03.252+07:00  WARN 12160 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-28T21:24:03.503+07:00  INFO 12160 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@71c2cb26, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@593db293, org.springframework.security.web.context.SecurityContextHolderFilter@54519d74, org.springframework.security.web.header.HeaderWriterFilter@5fa0943d, org.springframework.security.web.authentication.logout.LogoutFilter@6259d7a0, com.ons.securitylayerJwt.security.JwtAuthenticationFilter@50331591, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3d00c2ae, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@50ad5625, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5220e6ff, org.springframework.security.web.session.SessionManagementFilter@6c54d0dc, org.springframework.security.web.access.ExceptionTranslationFilter@77d7d2d0, org.springframework.security.web.access.intercept.AuthorizationFilter@1a16583d]
+2024-07-28T21:24:04.006+07:00  INFO 12160 --- [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2024-07-28T21:24:04.258+07:00  WARN 12160 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2024-07-28T21:24:04.313+07:00  INFO 12160 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2024-07-28T21:24:04.343+07:00  INFO 12160 --- [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2024-07-28T21:24:04.348+07:00  INFO 12160 --- [main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T21:24:04.367+07:00  INFO 12160 --- [main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2024-07-28T21:24:04.367+07:00  INFO 12160 --- [main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2024-07-28T21:24:04.367+07:00  INFO 12160 --- [main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2024-07-28T21:24:04.367+07:00  INFO 12160 --- [main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2024-07-28T21:24:04.368+07:00  INFO 12160 --- [main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2024-07-28T21:24:04.368+07:00  INFO 12160 --- [main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2024-07-28T21:24:04.368+07:00  INFO 12160 --- [main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2024-07-28T21:24:04.802+07:00  INFO 12160 --- [main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2024-07-28T21:24:04.807+07:00  INFO 12160 --- [main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2024-07-28T21:24:04.811+07:00  INFO 12160 --- [main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2024-07-28T21:24:04.820+07:00  INFO 12160 --- [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1722176644819 with initial instances count: 3
+2024-07-28T21:24:04.831+07:00  INFO 12160 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application SERCURIY-SERVICE with eureka with status UP
+2024-07-28T21:24:04.832+07:00  INFO 12160 --- [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1722176644832, current=UP, previous=STARTING]
+2024-07-28T21:24:04.833+07:00  INFO 12160 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERCURIY-SERVICE/MayBacks:sercuriy-service:9003: registering service...
+2024-07-28T21:24:04.861+07:00  INFO 12160 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9003 (http) with context path ''
+2024-07-28T21:24:04.862+07:00  INFO 12160 --- [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 9003
+2024-07-28T21:24:04.880+07:00  INFO 12160 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERCURIY-SERVICE/MayBacks:sercuriy-service:9003 - registration status: 204
+2024-07-28T21:24:04.990+07:00  INFO 12160 --- [main] c.o.s.SecurityLayerJwtApplication        : Started SecurityLayerJwtApplication in 7.876 seconds (process running for 8.818)
+2024-07-28T21:29:04.383+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T21:34:04.386+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T21:39:04.389+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T21:44:04.400+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T21:49:04.421+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T22:00:43.727+07:00  WARN 12160 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=11m41s834ms256µs800ns).
+2024-07-28T22:05:16.260+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T22:10:16.274+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T22:15:16.284+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T22:20:16.290+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T22:25:16.303+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T22:30:16.322+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T22:35:16.326+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T22:40:16.342+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T22:45:16.359+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T22:50:16.362+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T22:55:16.368+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T23:00:16.383+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T23:05:16.394+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T23:10:16.401+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T23:15:16.410+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T23:20:16.423+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T23:25:58.856+07:00  WARN 12160 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m43s966ms688µs800ns).
+2024-07-28T23:29:30.395+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T23:34:30.399+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T23:39:30.406+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-07-28T23:44:30.424+07:00  INFO 12160 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration

@@ -33,6 +33,8 @@ public class AudioBook {
 	private Long view;
 	@Column
 	private String preview;
+	@Column
+	private Long audioBookType;
 	public Long getId() {
 		return id;
 	}
@@ -107,9 +109,16 @@ public class AudioBook {
 		this.preview = preview;
 	}
 	
+	public Long getAudioBookType() {
+		return audioBookType;
+	}
+	public void setAudioBookType(Long audioBookType) {
+		this.audioBookType = audioBookType;
+	}
+	
 	public AudioBook(Long id, String audioBookAuthor, String audioBookCategory, String audioBookDescription,
 			String audioBookName, Long audioBookPrice, String coverAudioBook, Long favorite, String audio,
-			Long purchases, Long view, String preview) {
+			Long purchases, Long view, String preview, Long audioBookType) {
 		super();
 		this.id = id;
 		this.audioBookAuthor = audioBookAuthor;
@@ -123,6 +132,7 @@ public class AudioBook {
 		this.purchases = purchases;
 		this.view = view;
 		this.preview = preview;
+		this.audioBookType = audioBookType;
 	}
 	public AudioBook() {
 		super();

@@ -21,7 +21,9 @@ const CardAudioBook = (props) => {
                         </Link>
                     </span>
                     <button>
-                        <Link className={cx("linkdetail-book")} to="/detailaudiobook" state={props.audio}>Chi tiết</Link>
+                        <Link className={cx('linkdetail-book')} to="/detailaudiobook" state={props.audio}>
+                            Chi tiết
+                        </Link>
                     </button>
                 </div>
             </div>
@@ -30,6 +32,6 @@ const CardAudioBook = (props) => {
             </div>
         </div>
     );
-}
+};
 
 export default CardAudioBook;

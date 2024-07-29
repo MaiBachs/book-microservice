@@ -49,6 +49,7 @@ function Login(props) {
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('email', loginForm.email);
                 localStorage.setItem('userId', response.data.userId);
+                localStorage.setItem('userName', response.data.userName);
                 Cookies.set('email', loginForm.email);
                 toastr.success('Đăng nhập thành công');
                 navigate('/');

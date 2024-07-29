@@ -85,6 +85,7 @@ public class UserService{
         String token = jwtUtilities.generateToken(user.getUsername(),rolesNames);
         loginDto.setToken(token);
         loginDto.setUserId(user.getId());
+        loginDto.setUserName(user.getUserName());
         return loginDto;
     }
 

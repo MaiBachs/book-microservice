@@ -37,29 +37,15 @@ public class BookEntity {
     private Date lastUpdate;
     @Column
     private String lastUser;
+    @Column
+    private Long bookType;
     
     public BookEntity() {
     }
 
 	public BookEntity(Long id, String bookName, String bookAuthor, String bookCategory, String bookDescription,
-			Long view, String coverBook, Long bookPrice, Long purchases, String preview, Long favorite) {
-		super();
-		this.id = id;
-		this.bookName = bookName;
-		this.bookAuthor = bookAuthor;
-		this.bookCategory = bookCategory;
-		this.bookDescription = bookDescription;
-		this.view = view;
-		this.coverBook = coverBook;
-		this.bookPrice = bookPrice;
-		this.purchases = purchases;
-		this.preview = preview;
-		this.favorite = favorite;
-	}
-	
-	public BookEntity(Long id, String bookName, String bookAuthor, String bookCategory, String bookDescription,
 			Long view, String coverBook, Long bookPrice, Long purchases, String preview, Long favorite, Date lastUpdate,
-			String lastUser) {
+			String lastUser, Long bookType) {
 		super();
 		this.id = id;
 		this.bookName = bookName;
@@ -74,6 +60,7 @@ public class BookEntity {
 		this.favorite = favorite;
 		this.lastUpdate = lastUpdate;
 		this.lastUser = lastUser;
+		this.bookType = bookType;
 	}
 
 	public String getPreview() {
@@ -178,6 +165,14 @@ public class BookEntity {
 
 	public void setLastUser(String lastUser) {
 		this.lastUser = lastUser;
+	}
+
+	public Long getBookType() {
+		return bookType;
+	}
+
+	public void setBookType(Long bookType) {
+		this.bookType = bookType;
 	}
 
 }
