@@ -183,12 +183,12 @@ function Header(props) {
                             </button>
                             <div id="dropdown" className={cx('dropdown')}>
                                 <p>
-                                    <Link to="/bookcase" style={{ height: '100%' }}>
+                                    <Link to="/ebookcase" style={{ height: '100%' }}>
                                         <MdMenuBook style={{ marginTop: '-10x' }} /> Tủ sách của bạn
                                     </Link>
                                 </p>
                                 <p>
-                                    <Link to="/historypayment">
+                                    <Link to="/historypaymentbook">
                                         <MdWorkHistory style={{ marginTop: '-4px' }} /> Lịch sử giao dich
                                     </Link>
                                 </p>
@@ -319,7 +319,7 @@ function Header(props) {
                     </li>
                     <li>
                         <Link className={cx('link-menu')} to="/audiobook">
-                            Audio Book
+                            Sách nghe
                         </Link>
                     </li>
                     <li>

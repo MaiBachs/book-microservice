@@ -42,7 +42,6 @@ function DetailBook() {
                 },
             })
             .then((response) => {
-                console.log(response.data);
                 if (response.data.userId != undefined || response.data.userId != null) {
                     setCheckBought(true);
                 }
@@ -58,7 +57,6 @@ function DetailBook() {
                 },
             })
             .then((response) => {
-                console.log(response.data);
                 if (response.data.userId != undefined || response.data.userId != null) {
                     setCheckUserMember(true);
                 }

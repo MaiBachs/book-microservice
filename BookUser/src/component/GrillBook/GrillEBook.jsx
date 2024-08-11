@@ -30,6 +30,7 @@ function GrillEBook(props) {
             }
         }
     }
+
     let indexPage = [];
     for (let i = 1; i <= props.listBookCT1.totalPage; i++) {
         indexPage.push(i);
@@ -55,7 +56,7 @@ function GrillEBook(props) {
     };
     return (
         <>
-            <div class="container ms-2 mt-2">
+            <div class="container ms-2 mt-2" style={{ maxWidth: '1100px', minWidth: '830px' }}>
                 <div class="row test">
                     {list2.map((bookList) => {
                         return (
@@ -63,7 +64,7 @@ function GrillEBook(props) {
                                 {bookList.map((book) => {
                                     return (
                                         <>
-                                            <div class="col-auto p-2">
+                                            <div class="col-4 p-2">
                                                 <CardBookMedium book={book} />
                                             </div>
                                         </>

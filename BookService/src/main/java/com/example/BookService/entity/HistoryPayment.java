@@ -21,6 +21,8 @@ public class HistoryPayment {
 	@Column
 	private Long bookId;
 	@Column
+	private Long audioBookId;
+	@Column
 	private String contentPayment;
 	@Column
 	private Long moneyPayment;
@@ -30,7 +32,21 @@ public class HistoryPayment {
 	private Long termId;
 	@Column
 	private Long userId;
+	@Transient
+	private String bookName;
 	
+	public Long getAudioBook() {
+		return audioBookId;
+	}
+	public void setAudioBookId(Long audioBookId) {
+		this.audioBookId = audioBookId;
+	}
+	public String getBookName() {
+		return bookName;
+	}
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
 	public Long getHistory_payment_id() {
 		return history_payment_id;
 	}
@@ -80,17 +96,19 @@ public class HistoryPayment {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	public HistoryPayment(Long history_payment_id, String codePayment, Long bookId, String contentPayment,
-			Long moneyPayment, Date createdDate, Long termId, Long userId) {
+	public HistoryPayment(Long history_payment_id, String codePayment, Long bookId, Long audioBookId, String contentPayment,
+			Long moneyPayment, Date createdDate, Long termId, Long userId, String bookName) {
 		super();
 		this.history_payment_id = history_payment_id;
 		this.codePayment = codePayment;
 		this.bookId = bookId;
+		this.audioBookId = audioBookId;
 		this.contentPayment = contentPayment;
 		this.moneyPayment = moneyPayment;
 		this.createdDate = createdDate;
 		this.termId = termId;
 		this.userId = userId;
+		this.bookName = bookName;
 	}
 	public HistoryPayment() {
 		super();

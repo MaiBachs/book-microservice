@@ -27,7 +27,6 @@ function PopupPayment(props) {
         positionClass: 'toast-top-center', // vị trí giữa bên trên màn hình
         toastClass: 'toastr-custom-style', // tùy chỉnh style cho toastr
     };
-    console.log(props);
 
     return (
         <div>

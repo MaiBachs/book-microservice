@@ -41,12 +41,12 @@ const AudioBook = () => {
             });
     }, [listAudioBook.page]);
     const listCategory = [
-        'Doanh nhân - Bài học kinh doanh',
+        'Tâm linh - Tôn giáo',
         'Trinh thám - Kinh dị',
         'Viễn tưởng - Giả tưởng',
-        'Khởi nghiệp - Làm giàu',
+        'Ngôn tình',
         'Marketing - Bán hàng',
-        'Quản trị - Lãnh đạo',
+        'Địa lý du lịch',
         'Tài chính cá nhân',
         'Phát triển cá nhân',
     ];

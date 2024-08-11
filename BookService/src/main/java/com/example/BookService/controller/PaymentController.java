@@ -66,6 +66,15 @@ public class PaymentController {
         		historyPayment.setCodePayment(transactionId);
         		historyPayment.setContentPayment("Thanh toán mua sách trả phí ");
         		historyPaymentService.save(historyPayment);
+        	}else if(info[3].equals("forBuyAudioBook")) {
+        		HistoryPayment historyPayment = new HistoryPayment();
+        		historyPayment.setUserId(Long.valueOf(info[1]));
+        		historyPayment.setAudioBookId(Long.valueOf(info[2]));
+        		historyPayment.setMoneyPayment(Long.valueOf(totalPrice));
+        		historyPayment.setCreatedDate(new Date());
+        		historyPayment.setCodePayment(transactionId);
+        		historyPayment.setContentPayment("Thanh toán mua sách trả phí ");
+        		historyPaymentService.save(historyPayment);
         	}
         }
 

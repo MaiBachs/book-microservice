@@ -9,7 +9,23 @@ public class AudioBookInput {
     private String audioBookCategory;
     private String audioBookName;
     private Long audioBookType;
+    private String audioBookAuthor;
     private List<String> categories = new ArrayList();
+    private Long userId;
+    
+    
+	public String getAudioBookAuthor() {
+		return audioBookAuthor;
+	}
+	public void setAudioBookAuthor(String audioBookAuthor) {
+		this.audioBookAuthor = audioBookAuthor;
+	}
+	public Long getUserId() {
+		return userId;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 	public int getPage() {
 		return page;
 	}

@@ -29,20 +29,11 @@
                     background-color: rgb(184, 184, 184, 0.1);
                     .heart-icon {
                         cursor: pointer;
-                        color: rgb(112, 112, 110);
-                        margin-bottom: 8px;
-                        font-size: 22px;
-                        &:hover {
-                            color: rgb(238, 171, 26);
-                            font-size: 18px;
-                        }
+                        color: #70706e;
+                        margin-bottom: 10px;
+                        font-size: 27px;
                         &:active {
-                            color: rgb(238, 171, 26);
-                            font-size: 18px;
-                        }
-                        &:focus {
-                            color: rgb(238, 171, 26);
-                            font-size: 18px;
+                            font-size: 25px;
                         }
                     }
                 }

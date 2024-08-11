@@ -1,24 +1,64 @@
 input{
     height: 23px;
 }
-.grid-container {
-    width: fit-content;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    column-gap: 5px;
-    width: 100%;
-    justify-items: start;
-    padding: 0px 20px;
-    .grid-item {
-        color: rgb(6, 5, 5);
-        padding: 10px;
-        text-align: center;
-        font-size: 1.5em;
-        font-size: 16px;
-        label{
-            display: inline-block;
-            text-align: start;
-        }
+.content-box{
+    input{
+      font-size: 16px;
     }
-}
+    .header-add-box{
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 15px;
+      .cover-box{
+      }
+      .cover-image{
+        width: 122px;
+        height: 178px;
+        border: 1px solid black
+      }
+      .cover-upload-button{
+        margin-left: 10px;
+        bottom: 0px;
+        width: 80px;
+        height: 25px;
+        font-size: 14px;
+      }
+      .des-box{
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+        .description{
+          width: 943px;
+          height: 100%;
+          font-size: 16px;
+        }
+      }
+    }
+    .url-box{
+      display: flex;
+      .url-title{
+        font-size: 16px;
+        color: black;
+        margin-left: 12.1%;
+        margin-right: 8.6%;
+      }
+      .url-input{
+        width: 66.5%;
+      }
+    }
+    .grid-container{
+      width: fit-content;
+      margin-left: 12.1%;
+      margin-right: 7%;
+      display: grid;
+      row-gap: 20px;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      .grid-item {
+        color: black;
+        text-align: left;
+        font-size: 16px;
+        grid-gap: 5px;
+      }
+    }
+  }

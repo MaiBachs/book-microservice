@@ -25,7 +25,7 @@ public class ChatModule {
         this.namespace.addDisconnectListener(onDisconnected());
         this.namespace.addEventListener("chat", ChatMessage.class, onChatReceived());
     }
-
+    
     private DataListener<ChatMessage> onChatReceived() {
         return (client, data, ackSender) -> {
             log.debug("Client[{}] - Received chat message '{}'", client.getSessionId().toString(), data);

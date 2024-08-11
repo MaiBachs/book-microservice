@@ -10,8 +10,11 @@ import Chat from './Page/Chat/Chat.jsx';
 import PdfFileView from './Page/PdfFileView/PdfFileView.jsx';
 import AudioBook from './Page/AudioBook/AudioBook.jsx';
 import DetailAudioBook from './Page/DetailAudioBook/DetailAudioBook.jsx';
-import BookCase from './Page/BookCase/BookCase.jsx';
+import EBookCase from './Page/BookCase/EBookCase.jsx';
+import AudioBookCase from './Page/BookCase/AudioBookCase.jsx';
 import HistoryPaymentBook from './Page/HistoryPayment/HistoryPaymentBook.jsx';
+import HistoryPaymentAudioBook from './Page/HistoryPayment/HistoryPaymentAudioBook.jsx';
+import HistoryPaymentRegiscard from './Page/HistoryPayment/HistoryPaymentRegiscard.jsx';
 
 function App() {
     return (
@@ -29,8 +32,11 @@ function App() {
                         <Route path="/pdffileview" element={<PdfFileView />}></Route>
                         <Route path="/audiobook" element={<AudioBook />}></Route>
                         <Route path="/detailaudiobook" element={<DetailAudioBook />}></Route>
-                        <Route path="/bookcase" element={<BookCase />}></Route>
-                        <Route path="/historypayment" element={<HistoryPaymentBook />}></Route>
+                        <Route path="/ebookcase" element={<EBookCase />}></Route>
+                        <Route path="/audiobookcase" element={<AudioBookCase />}></Route>
+                        <Route path="/historypaymentbook" element={<HistoryPaymentBook />}></Route>
+                        <Route path="/historypaymentaudiobook" element={<HistoryPaymentAudioBook />}></Route>
+                        <Route path="/historypaymentregiscard" element={<HistoryPaymentRegiscard />}></Route>
 
                         <Route path="*" element={<Navigate to="/home" />}></Route>
                     </Routes>

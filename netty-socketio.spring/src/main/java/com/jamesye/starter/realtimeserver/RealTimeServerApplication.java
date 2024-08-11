@@ -23,6 +23,8 @@ public class RealTimeServerApplication {
         Configuration config = new Configuration();
         config.setHostname(host);
         config.setPort(port);
+        config.setMaxFramePayloadLength(1000*1024);
+        config.setMaxHttpContentLength(1000*1024);
         return new SocketIOServer(config);
     }
 

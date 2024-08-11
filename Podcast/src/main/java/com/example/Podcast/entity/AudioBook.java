@@ -1,5 +1,7 @@
 package com.example.Podcast.entity;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,6 +37,15 @@ public class AudioBook {
 	private String preview;
 	@Column
 	private Long audioBookType;
+	@Column
+	private Date lastUpdate;
+	
+	public Date getLastUpdate() {
+		return lastUpdate;
+	}
+	public void setLastUpdate(Date lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
 	public Long getId() {
 		return id;
 	}

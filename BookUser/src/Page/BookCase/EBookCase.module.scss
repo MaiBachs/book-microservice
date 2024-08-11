@@ -1,0 +1,122 @@
+.wrapper {
+    display: flex;
+    width: 1100px;
+    margin-top: 10px;
+    .side-bar {
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        .ebook-menu {
+            width: 100%;
+            border: 1px solid white;
+            background-color: #1ba085;
+            display: flex;
+            padding-left: 2px;
+            .book-tab {
+                text-decoration: none;
+                font-size: 16px;
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+                padding-top: 2px;
+                padding-bottom: 2px;
+            }
+        }
+        .audio-book-menu {
+            width: 100%;
+            border: 1px solid white;
+            background-color: #1ba085;
+            display: flex;
+            padding-left: 2px;
+            .audio-book-tab {
+                text-decoration: none;
+                font-size: 16px;
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+                padding-top: 2px;
+                padding-bottom: 2px;
+            }
+        }
+    }
+    .content {
+        margin-bottom: 20px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-left: 10px;
+        .row {
+            display: flex;
+            width: 880px;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.05s linear;
+            background-color: aliceblue;
+            &:hover {
+                background-color: #bce8df;
+                border-radius: 2px;
+                .bookName {
+                    color: white;
+                }
+                .bookAuthor {
+                    color: white;
+                }
+                .bookPrice {
+                    color: white;
+                }
+            }
+            .link-detail {
+                text-decoration: none;
+                .content1 {
+                    width: 500px;
+                    margin-left: 20px;
+                    height: 110px;
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    .cover {
+                        width: 70px;
+                        height: 100px;
+                        box-shadow: 0 0 15px rgba(33, 33, 33, 0.5);
+                    }
+                    div {
+                        height: 100px;
+                        padding-left: 20px;
+                        .bookName {
+                            color: black;
+                            font-size: 14px;
+                            text-align: start;
+                            text-decoration: none;
+                        }
+                        .bookAuthor {
+                            color: black;
+                            font-size: 12px;
+                            text-align: start;
+                            text-decoration: none;
+                        }
+                        .bookPrice {
+                            color: black;
+                            font-size: 12px;
+                            text-align: start;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+
+            .purchases {
+                color: black;
+                display: flex;
+                margin-right: 70px;
+                span {
+                    font-size: 15px;
+                }
+                .cart-icon {
+                    color: #1ba085;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}

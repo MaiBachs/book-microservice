@@ -10,7 +10,7 @@ import DefaultLayout from '../../DefaultLayout/DefaultLayout';
 const cx = classNames.bind(styles);
 
 function ListBookByCategory() {
-    const size = 16;
+    const size = 9;
     const [listBookCT1, setListBookCT1] = useState({
         page: 1,
         totalPage: 0,
@@ -40,7 +40,9 @@ function ListBookByCategory() {
     return (
         <div className={cx('wrapper')}>
             <DefaultLayout>
-                <GrillEBook size={size} listBookCT1={listBookCT1} setListBookCT1={setListBookCT1}></GrillEBook>
+                <div style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                    <GrillEBook size={size} listBookCT1={listBookCT1} setListBookCT1={setListBookCT1}></GrillEBook>
+                </div>
             </DefaultLayout>
         </div>
     );

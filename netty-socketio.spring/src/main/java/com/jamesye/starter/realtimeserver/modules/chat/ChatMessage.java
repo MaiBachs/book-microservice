@@ -5,18 +5,20 @@ public class ChatMessage {
 	private Long id;
     private String userName;
     private String message;
+    private String image;
 
     public ChatMessage() {
     }
 
-    public ChatMessage(String userName, String message, Long id) {
-        super();
-        this.userName = userName;
-        this.message = message;
-        this.id = id;
-    }
-
-    public String getUserName() {
+    public ChatMessage(Long id, String userName, String message, String image) {
+		super();
+		this.id = id;
+		this.userName = userName;
+		this.message = message;
+		this.image = image;
+	}
+    
+	public String getUserName() {
         return userName;
     }
 
@@ -39,6 +41,14 @@ public class ChatMessage {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	@Override

@@ -1,0 +1,101 @@
+.wrapper {
+    display: flex;
+    width: 1100px;
+    margin-top: 10px;
+    .side-bar {
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        .pay-ebook-menu {
+            width: 100%;
+            border: 1px solid white;
+            background-color: #1ba085;
+            display: flex;
+            padding-left: 2px;
+            .pay-book-tab {
+                text-decoration: none;
+                font-size: 16px;
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+                padding-top: 2px;
+                padding-bottom: 2px;
+            }
+        }
+        .pay-audio-book-menu {
+            width: 100%;
+            border: 1px solid white;
+            background-color: #1ba085;
+            display: flex;
+            padding-left: 2px;
+            .pay-book-tab {
+                text-decoration: none;
+                font-size: 16px;
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+                padding-top: 2px;
+                padding-bottom: 2px;
+            }
+        }
+        .pay-member-menu {
+            width: 100%;
+            border: 1px solid white;
+            background-color: #1ba085;
+            display: flex;
+            padding-left: 2px;
+            .pay-member-tab {
+                text-decoration: none;
+                font-size: 16px;
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+                padding-top: 2px;
+                padding-bottom: 2px;
+            }
+        }
+    }
+    .content {
+        width: 100%;
+        padding-left: 10px;
+        .books {
+            font-family: Arial, Helvetica, sans-serif;
+            width: 100%;
+            .action {
+                text-align: center;
+            }
+            .detail-popup {
+                display: none;
+            }
+        }
+
+        .books td {
+            font-size: 16px;
+            color: black;
+            text-align: start;
+        }
+        .books th {
+            border: 1px solid #ddd;
+            padding: 3px;
+            font-size: 16px;
+            color: black;
+            text-align: start;
+            font-weight: normal;
+        }
+
+        .books tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .books tr:hover {
+            background-color: #ddd;
+        }
+
+        .books th {
+            padding-top: 2px;
+            padding-bottom: 2px;
+            text-align: left;
+            background-color: #1ba085;
+            color: white;
+            font-size: 16px;
+        }
+    }
+}

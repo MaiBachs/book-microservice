@@ -8,8 +8,17 @@ public class BookInput {
     private Long bookPrice;
     private String bookAuthor;
     private Long bookType;
+    private Long userId;
+    
+    public Long getUserId() {
+		return userId;
+	}
 
-    public int getPage() {
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public int getPage() {
         return page;
     }
 

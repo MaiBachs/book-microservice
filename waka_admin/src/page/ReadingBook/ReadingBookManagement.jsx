@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DefaultLayout from '../../defaultLayout/DefaultLayout';
 import styles from './ReadingBookManagement.module.scss';
 import classNames from 'classnames/bind';
@@ -28,31 +28,34 @@ function ReadingBookManagement() {
     console.log(book)
   }
 
-  const [dataSearch, setDataSearch] = useState({
-    bookName: "",
-    bookCategory: "",
-    bookPrice: 0,
-    bookAuthor: "",
-    page: 1,
-    size: 10
-  })
   const [listBookSearch, setListBookSearch] = useState({
     page: 1,
     totalPage: 0,
     bookEntityList: [],
   });
 
+  const [dataSearch, setDataSearch] = useState({
+    bookName: "",
+    bookCategory: "",
+    bookType: null,
+    bookAuthor: "",
+    page: listBookSearch.page,
+    size: 10
+  })
+
   function handleInputSearch(event) {
     setDataSearch({
       ...dataSearch,
       [event.target.name]: event.target.value
     })
-    console.log(dataSearch);
   }
 
-  useState(() => {
+  useEffect(() => {
     axios
-      .post("http://localhost:9191/api/e-book-service/management/search-book-by-page", dataSearch)
+      .post("http://localhost:9191/api/e-book-service/management/search-book-by-page", {
+        ...dataSearch,
+        page: listBookSearch.page
+      })
       .then((response) => {
         setListBookSearch({
           ...listBookSearch,
@@ -61,7 +64,7 @@ function ReadingBookManagement() {
         });
       })
       .catch();
-  }, [])
+  }, [listBookSearch.page])
 
   function handleSearch() {
     axios
@@ -142,9 +145,11 @@ function ReadingBookManagement() {
             <label>Book_option</label>
           </div>
           <div className={cx("grid-item")}>
-            <select name="bookPrice" onChange={(event) => { handleInputSearch(event) }}>
-              <option value="0" >Free reader waka</option>
-              <option value="1" >Charge member waka</option>
+            <select name="bookType" onChange={(event) => { handleInputSearch(event) }}>
+              <option value="" >All</option>
+              <option value="1" >Free reader waka</option>
+              <option value="2" >For member waka</option>
+              <option value="3" >Pay fee</option>
             </select>
           </div>
           <div className={cx("grid-item")}></div>
@@ -156,7 +161,7 @@ function ReadingBookManagement() {
                 <th>Stt</th>
                 <th>Book name</th>
                 <th>Book category</th>
-                <th>Book price</th>
+                <th>Book option</th>
                 <th>Book author</th>
                 <th>View</th>
                 <th>Show file pdf</th>
@@ -170,7 +175,11 @@ function ReadingBookManagement() {
                   <td>{i + 1}</td>
                   <td>{book.bookName}</td>
                   <td>{book.bookCategory}</td>
-                  <td>{book.bookPrice}</td>
+                  <td>
+                    {book.bookType == 1 && (<span>Free reader waka</span>)}
+                    {book.bookType == 2 && (<span>For member waka</span>)}
+                    {book.bookType == 3 && (<span>Pay fee</span>)}
+                  </td>
                   <td>{book.bookAuthor}</td>
                   <td>{book.view}</td>
                   <td><Link href='#' to="/pdffileview" state={book} >{book.preview}</Link></td>

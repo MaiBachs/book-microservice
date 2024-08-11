@@ -16,6 +16,7 @@ const cx = classNames.bind(styles);
 const DetailAudioBook = () => {
     const location = useLocation();
     const audio = location.state;
+    console.log(audio.preview);
 
     function handleClickHeart() {
         console.log(document.getElementById('heart'));
@@ -48,7 +49,6 @@ const DetailAudioBook = () => {
                 },
             })
             .then((response) => {
-                console.log(response.data);
                 if (response.data.userId != undefined || response.data.userId != null) {
                     setCheckBought(true);
                 }
@@ -64,7 +64,6 @@ const DetailAudioBook = () => {
                 },
             })
             .then((response) => {
-                console.log(response.data);
                 if (response.data.userId != undefined || response.data.userId != null) {
                     setCheckUserMember(true);
                 }
@@ -78,7 +77,8 @@ const DetailAudioBook = () => {
     const handlePayBook = () => {
         var body = {
             amount: audio.audioBookPrice,
-            orderInfo: `Payment for books-${localStorage.getItem('userId')}` + '-' + `${audio.id}` + '-' + `forBuyBook`,
+            orderInfo:
+                `Payment for books-${localStorage.getItem('userId')}` + '-' + `${audio.id}` + '-' + `forBuyAudioBook`,
         };
         axios({
             method: 'post',

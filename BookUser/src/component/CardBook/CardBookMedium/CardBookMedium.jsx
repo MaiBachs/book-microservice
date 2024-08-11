@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 
 function CardBookMedium(props) {
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper')} style={{ marginLeft: 'auto', marginRight: 'auto' }}>
             <div className={cx('div')}>
                 <div className={cx('content')}>
                     <img className={cx('thumbnail')} src={props.book.coverBook} alt="..."></img>

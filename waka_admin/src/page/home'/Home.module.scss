@@ -1,3 +1,35 @@
 .wrapper{
     margin-top: 0px;
+    .data-box{
+        width: 1150px;
+        margin-top: 20px;
+        .grid-container {
+            margin-left: 10px;
+            width: fit-content;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            column-gap: 112px;
+            row-gap: 30px;
+            width: 80%;
+            max-width: 800px;
+            justify-items: start;
+            .grid-item {
+                width: 200px;
+                height: 80px;
+                border: 1px solid black;
+                .title{
+                    color: black;
+                    font-size: 18px;
+                    margin: 0px;
+                }
+                .value{
+                    color: #04AA6D;
+                    font-size: 24px;
+                    margin: 0px;
+                }
+            }
+        }
+        
+    }
 }

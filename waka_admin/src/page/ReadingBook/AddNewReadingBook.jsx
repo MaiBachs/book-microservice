@@ -4,11 +4,13 @@ import styles from './AddNewReadingBook.module.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 const AddNewReadingBook = () => {
     const [fileData, setFileData] = useState()
+    const navigate = useNavigate();
 
     const [readingBook, setReadingBook] = useState(
       {
@@ -18,7 +20,8 @@ const AddNewReadingBook = () => {
         bookDescription: "",
         coverBook: "",
         bookPrice: 0,
-        lastUser: "admin"
+        lastUser: "admin",
+        bookType: 1
       }
     )
 
@@ -66,10 +69,11 @@ const AddNewReadingBook = () => {
         formData.append('file', fileData);
         formData.append('bookEntityStr', JSON.stringify(readingBook));
 
-        axios.post("http://localhost:9191/api/e-book-service/management/add-reading-book", formData)
+        axios.post("http://localhost:9191/api/e-book-service/management/edit", formData)
         .then((response)=>{
           if(response.data.data.id != null){
             alert("Add new succcess")
+            navigate('/readingbookmanagement');
           }else{
             alert("Add new False")
           }
@@ -132,9 +136,14 @@ const AddNewReadingBook = () => {
                 </div>
                 <div className={cx("grid-item")}></div>
                 <div className={cx("grid-item")}>
-                  <Link to="#">view file</Link>
+                  Book_option
                 </div>
                 <div className={cx("grid-item")}>
+                  <select name="bookType" onChange={(event) => { handleInputReadingBook(event) }}>
+                    <option value="1" >Free reader waka</option>
+                    <option value="2" >For member waka</option>
+                    <option value="3" >Pay fee</option>
+                  </select>
                 </div>
               </div>
             </div>

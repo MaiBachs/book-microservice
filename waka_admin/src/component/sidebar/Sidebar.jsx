@@ -11,10 +11,11 @@ const Sidebar = () => {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('menu')}>Menu</div>
-            <TabSidebar dataTab={{url: "", title: "Home"}}></TabSidebar>
+            <TabSidebar dataTab={{url: "/home", title: "Home"}}></TabSidebar>
             <TabSidebar dataTab={{url: "/readingbookmanagement", title: "Reading Book"}}></TabSidebar>
-            <TabSidebar dataTab={{url: "", title: "Audio Book"}}></TabSidebar>
-            <TabSidebar dataTab={{url: "", title: "Member management"}}></TabSidebar>
+            <TabSidebar dataTab={{url: "/audiobookmanagement", title: "Audio Book"}}></TabSidebar>
+            <TabSidebar dataTab={{url: "/payment-management-reading-book", title: "Payment Management"}}></TabSidebar>
+            <TabSidebar dataTab={{url: "", title: "Member Management"}}></TabSidebar>
         </div>
     );
 }

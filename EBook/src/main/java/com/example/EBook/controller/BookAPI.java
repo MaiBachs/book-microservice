@@ -35,9 +35,12 @@ public class BookAPI {
     private String bookPath;
     
     @GetMapping(value = "/download")
-    public ResponseEntity<InputStreamResource> downloadPdf(@RequestParam String pdfFileName) throws IOException {
+    public ResponseEntity<InputStreamResource> downloadPdf(
+    		@RequestParam("pdfFileName") String pdfFileName
+    		, @RequestParam(value = "userId", required = false) Long userId
+    		, @RequestParam(value = "category", required = false) String category) throws IOException {
     	FileSystemResource pdfFile = new FileSystemResource(bookPath + "/" + pdfFileName);
-    	bookService.ViewFilePdf(pdfFileName);
+    	bookService.ViewFilePdf(pdfFileName, userId, category);
         return ResponseEntity
                 .ok()
                 .contentLength(pdfFile.contentLength())
@@ -72,5 +75,23 @@ public class BookAPI {
     public ResponseEntity<GeneralResponse<BookOutput>> findBookByPage(@RequestBody BookInput bookInput){
         BookOutput bookOutput = bookService.getBookByPage(bookInput.getPage()-1, bookInput.getSize(), bookInput);
         return responseFactory.success(bookOutput);
+    }
+    
+    @GetMapping(value = "/detail-book")
+    public ResponseEntity<GeneralResponse<BookEntity>> detailBook(@RequestParam("bookId") Long bookId){
+    	BookEntity book = bookService.detailBook(bookId);
+        return responseFactory.success(book);
+    }
+    
+    @PostMapping(value = "/get-book-paid")
+    public ResponseEntity<GeneralResponse<BookOutput>> getBookPaid(@RequestBody BookInput bookInput){
+    	BookOutput bookOutput = bookService.getBookPaid(bookInput.getPage()-1, bookInput.getSize(), bookInput.getUserId());
+        return responseFactory.success(bookOutput);
+    }
+    
+    @GetMapping(value = "/recomend-for-user")
+    public ResponseEntity<GeneralResponse<List<BookEntity>>> recomentForUser(@RequestParam("userId") Long userId){
+    	List<BookEntity> books = bookService.recomentForUser(userId);
+        return responseFactory.success(books);
     }
 }

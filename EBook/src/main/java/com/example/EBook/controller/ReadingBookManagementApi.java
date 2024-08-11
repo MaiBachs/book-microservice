@@ -61,4 +61,21 @@ public class ReadingBookManagementApi {
 		}
         return responseFactory.success(bookEntity);
     }
+    
+    @PostMapping(value = "/edit")
+    public ResponseEntity<GeneralResponse<BookEntity>> edit(
+    		@RequestParam("bookEntityStr") String bookEntityStr 
+    		,@RequestParam("file") MultipartFile file){
+    	BookEntity bookEntity = new BookEntity();
+    	try {
+    		Gson gson = new Gson();
+    		bookEntity = gson.fromJson(bookEntityStr, new TypeToken<BookEntity>() {
+            }.getType());
+			bookEntity = bookService.edit(file, bookEntity);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return responseFactory.success(bookEntity);
+    }
 }

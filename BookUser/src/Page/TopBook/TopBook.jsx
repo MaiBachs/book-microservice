@@ -24,9 +24,6 @@ function TopBook() {
     }, []);
     return (
         <DefaultLayout>
-            <div className={cx('slide')}>
-                <img src="https://ebook.waka.vn/themes/desktop/reactjs//images/bannerButton.jpg" />
-            </div>
             <div className={cx('content')}>
                 <div className={cx('content-left')}>
                     <div className={cx('content-left-header')}>
