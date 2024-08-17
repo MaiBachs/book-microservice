@@ -169,10 +169,10 @@ const PaymentMemberMn = () => {
                             <td>{pm.userName}</td>
                             <td>{pm.term}</td>
                             <td>{pm.moneyPayment}</td>
-                            <td>{pm.createdDate.split("T1")[0]}</td>
+                            <td>{pm.createdDate.split("T")[0]}</td>
                             <td>{pm.contentPayment}</td>
-                            <td>{pm.startDate.split("T1")[0]}</td>
-                            <td>{pm.endDate.split("T1")[0]}</td>
+                            <td>{pm.startDate.split("T")[0]}</td>
+                            <td>{pm.endDate.split("T")[0]}</td>
                         </tr>
                         </>
                     ))}

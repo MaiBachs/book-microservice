@@ -14,7 +14,8 @@ import com.example.Podcast.entity.AudioBook;
 public interface AudioBookRepository extends JpaRepository<AudioBook, Long>{
 	@Query("select ab from AudioBook ab where 1=1 "
 			+ "and (:categories is null or ab.audioBookCategory in (:categories)) "
-			+ "and (:audioBookType is null or ab.audioBookType = :audioBookType) ")
+			+ "and (:audioBookType is null or ab.audioBookType = :audioBookType) "
+			+ "order by ab.lastUpdate desc  ")
 	Page<AudioBook> findByCategoryAndType(@Param("categories") List<String> categories,@Param("audioBookType") Long audioBookType, Pageable pageable);
 
 	@Query(value = "select h.audio_book_id "
@@ -28,6 +29,6 @@ public interface AudioBookRepository extends JpaRepository<AudioBook, Long>{
 			+ "and (:audioBookAuthor is null or upper(ab.audioBookAuthor) like concat('%',upper(:audioBookAuthor),'%' ) )"
 			+ "and (:audioBookCategory is null or upper(ab.audioBookCategory) like concat('%',upper(:audioBookCategory),'%' ) )"
 			+ "and (:audioBookType is null or ab.audioBookType = :audioBookType ) "
-			+ "order by ab.audioBookName asc ")
+			+ "order by ab.lastUpdate desc ")
 	Page<AudioBook> searchBookByPage(String audioBookName, String audioBookAuthor, String audioBookCategory, Long audioBookType, Pageable pageable);
 }

@@ -90,8 +90,16 @@ public class BookAPI {
     }
     
     @GetMapping(value = "/recomend-for-user")
-    public ResponseEntity<GeneralResponse<List<BookEntity>>> recomentForUser(@RequestParam("userId") Long userId){
-    	List<BookEntity> books = bookService.recomentForUser(userId);
+    public ResponseEntity<GeneralResponse<List<BookEntity>>> recomentForUser(@RequestParam(value = "userId", required = false) Long userId){
+    	List<BookEntity> books = null;
+    	if(userId != null) {
+    		books = bookService.recomentForUser(userId);
+    	}else {
+    		books = bookService.findTopBook();
+    	}
+    	if(books.size() == 0) {
+    		books = bookService.findTopBook();
+    	}
         return responseFactory.success(books);
     }
 }

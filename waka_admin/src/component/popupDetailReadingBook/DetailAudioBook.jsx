@@ -15,8 +15,8 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 900,
-    height: 500,
+    width: 1000,
+    height: 600,
     borderRadius: 0,
     bgcolor: 'background.paper',
     boxShadow: 24
@@ -47,21 +47,21 @@ const DetailAudioBook = (props) => {
                                 <img src={props.dataDetail.coverAudioBook}  style={{ width: '100%', height: 'auto' }}></img>
                             </div>
                             <div className={cx('grid-container')}>
-                                <div className={cx('grid-item')}>Book_name:</div>
+                                <div className={cx('grid-item')}>Audio_Book_name:</div>
                                 <div className={cx('grid-item')}>
                                     <input value={props.dataDetail.audioBookName} readOnly></input>
                                 </div>
                                 <div className={cx('grid-item')}></div>
-                                <div className={cx('grid-item')}>Book_category:</div>
+                                <div className={cx('grid-item')}>Audio_Book_category:</div>
                                 <div className={cx('grid-item')}>
                                     <input value={props.dataDetail.audioBookCategory} readOnly></input>
                                 </div>
-                                <div className={cx('grid-item')}>Book_price:</div>
+                                <div className={cx('grid-item')}>Audio_Book_price:</div>
                                 <div className={cx('grid-item')}>
                                     <input value={props.dataDetail.audioBookPrice} readOnly></input>
                                 </div>
                                 <div className={cx('grid-item')}></div>
-                                <div className={cx('grid-item')}>Book_author:</div>
+                                <div className={cx('grid-item')}>Audio_Book_author:</div>
                                 <div className={cx('grid-item')}>
                                     <input value={props.dataDetail.audioBookAuthor} readOnly></input>
                                 </div>
@@ -87,7 +87,7 @@ const DetailAudioBook = (props) => {
                     <Typography style={{paddingLeft: '3%', paddingRight: '3%'}}>
                         <div className={cx('grid-item')}>Description:</div>
                         <div className={cx('grid-item')}>
-                            <textarea style={{ width: '100%', height: '100px', outline: 'none' }} value={props.dataDetail.audioBookDescription}></textarea>
+                            <textarea style={{ width: '100%', height: '200px', outline: 'none' }} value={props.dataDetail.audioBookDescription}></textarea>
                         </div>
                     </Typography>
                     <Typography style={{textAlign: 'right', padding: '30px', bottom: '0', right: '0',  position: 'fixed'}}>

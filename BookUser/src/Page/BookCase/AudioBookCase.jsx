@@ -43,12 +43,12 @@ const AudioBookCase = () => {
                 <div className={cx('side-bar')}>
                     <div className={cx('ebook-menu')}>
                         <Link to="/ebookcase" className={cx('book-tab')}>
-                            Ebook
+                            Sách đọc
                         </Link>
                     </div>
                     <div className={cx('audio-book-menu')}>
                         <Link to="/audiobookcase" className={cx('audio-book-tab')}>
-                            AudioBook
+                            Sách nói
                         </Link>
                     </div>
                 </div>

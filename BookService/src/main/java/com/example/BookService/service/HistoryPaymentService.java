@@ -70,7 +70,7 @@ public class HistoryPaymentService {
 				historyPayment.setBookId(Long.parseLong(String.valueOf(oj[2])));
 				historyPayment.setContentPayment(String.valueOf(oj[3]));
 				historyPayment.setMoneyPayment(Long.parseLong(String.valueOf(oj[4])));
-				DateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.FFFFFF");
+				DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS");
 				try {
 					historyPayment.setCreatedDate(df.parse(String.valueOf(oj[5])));
 				} catch (ParseException e) {
@@ -97,7 +97,7 @@ public class HistoryPaymentService {
 				historyPayment.setAudioBookId(Long.parseLong(String.valueOf(oj[2])));
 				historyPayment.setContentPayment(String.valueOf(oj[3]));
 				historyPayment.setMoneyPayment(Long.parseLong(String.valueOf(oj[4])));
-				DateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.FFFFFF");
+				DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS");
 				try {
 					historyPayment.setCreatedDate(df.parse(String.valueOf(oj[5])));
 				} catch (ParseException e) {
@@ -123,7 +123,7 @@ public class HistoryPaymentService {
 				historyPayment.setCodePayment(String.valueOf(oj[1]));
 				historyPayment.setContentPayment(String.valueOf(oj[3]));
 				historyPayment.setMoneyPayment(Long.parseLong(String.valueOf(oj[4])));
-				DateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.FFFFFF");
+				DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS");
 				try {
 					historyPayment.setCreatedDate(df.parse(String.valueOf(oj[5])));
 				} catch (ParseException e) {
@@ -153,7 +153,7 @@ public class HistoryPaymentService {
 				historyPaymentEbookDto.setCodePayment(String.valueOf(oj[1]));
 				historyPaymentEbookDto.setContentPayment(String.valueOf(oj[2]));
 				historyPaymentEbookDto.setMoneyPayment(Long.parseLong(String.valueOf(oj[3])));
-				DateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.FFFFFF");
+				DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS");
 				try {
 					historyPaymentEbookDto.setCreatedDate(df.parse(String.valueOf(oj[4])));
 				} catch (ParseException e) {
@@ -224,7 +224,7 @@ public class HistoryPaymentService {
 				historyPaymentAudioBookDto.setCodePayment(String.valueOf(oj[1]));
 				historyPaymentAudioBookDto.setContentPayment(String.valueOf(oj[2]));
 				historyPaymentAudioBookDto.setMoneyPayment(Long.parseLong(String.valueOf(oj[3])));
-				DateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.FFFFFF");
+				DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS");
 				try {
 					historyPaymentAudioBookDto.setCreatedDate(df.parse(String.valueOf(oj[4])));
 				} catch (ParseException e) {
@@ -254,7 +254,7 @@ public class HistoryPaymentService {
 				historyPaymentMemberDto.setUserName(String.valueOf(oj[1]));
 				historyPaymentMemberDto.setTerm(Long.parseLong(String.valueOf(oj[2])));
 				historyPaymentMemberDto.setMoneyPayment(Long.parseLong(String.valueOf(oj[3])));
-				DateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.FFFFFF");
+				DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS");
 				try {
 					historyPaymentMemberDto.setCreatedDate(df.parse(String.valueOf(oj[4])));
 					historyPaymentMemberDto.setContentPayment(String.valueOf(oj[5]));

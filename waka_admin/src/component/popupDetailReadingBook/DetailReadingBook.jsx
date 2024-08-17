@@ -17,7 +17,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 900,
-    height: 500,
+    height: 600,
     borderRadius: 0,
     bgcolor: 'background.paper',
     boxShadow: 24,
@@ -83,7 +83,7 @@ const DetailReadingBook = (props) => {
                     <Typography style={{paddingLeft: '3%', paddingRight: '3%'}}>
                         <div className={cx('grid-item')}>Description:</div>
                         <div className={cx('grid-item')}>
-                            <textarea style={{ width: '100%', height: '100px', outline: 'none' }} value={props.dataDetail.bookDescription}></textarea>
+                            <textarea style={{ width: '100%', height: '200px', outline: 'none' }} value={props.dataDetail.bookDescription}></textarea>
                         </div>
                     </Typography>
                     <Typography style={{textAlign: 'right', padding: '30px', bottom: '0', right: '0',  position: 'fixed'}}>

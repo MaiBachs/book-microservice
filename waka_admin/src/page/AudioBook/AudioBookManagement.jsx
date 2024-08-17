@@ -56,7 +56,10 @@ function AudioBookManagement() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:9191/api/podcast-service/management/search-audio-book-by-page", dataSearch)
+      .post("http://localhost:9191/api/podcast-service/management/search-audio-book-by-page", {
+        ...dataSearch,
+        page: listBookSearch.page
+      })
       .then((response) => {
         setListBookSearch({
           ...listBookSearch,
@@ -65,7 +68,7 @@ function AudioBookManagement() {
         });
       })
       .catch();
-  }, [dataSearch.page])
+  }, [listBookSearch.page])
 
   function handleSearch() {
     axios
@@ -106,6 +109,20 @@ function AudioBookManagement() {
       });
     }
   };
+
+  function handkeDelete(bookId){
+    axios
+      .get("http://localhost:9191/api/podcast-service/management/delete", {
+        params: {
+          bookId: bookId,
+        },
+    })
+      .then((response) => {
+        alert("Delete success")
+        handleSearch()
+      })
+      .catch();
+  }
 
   return (
     <div className={cx('wrapper')}>
@@ -190,7 +207,7 @@ function AudioBookManagement() {
                   <td><Link href='#' onClick={()=>{handleOpenShowAudio(); handleSelectBook(book)}} state={book} >{book.preview.split("\\")[1]}</Link></td>
                   <td className={cx("action")}><BiDetail className={cx("detail")} onClick={()=>{handleOpen(); handleSelectBook(book)}} handleClose={handleClose} /></td>
                   <td className={cx("action")}><FaEdit className={cx("edit")} onClick={()=>{handleOpenEdit(); handleSelectBook(book)}} handleClose={handleCloseEdit} /></td>
-                  <td className={cx("action")}><MdDelete className={cx("delete")} /></td>
+                  <td className={cx("action")}><MdDelete className={cx("delete")} onClick={()=>{handkeDelete(book.id)}}/></td>
                 </tr>
                 </>
               ))}

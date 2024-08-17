@@ -39,10 +39,10 @@ function Header(props) {
     };
     const listCategory = [
         'Trinh thám - Kinh dị',
-        'Viễn tưởng - Giả tưởng',
+        'Quản trị - Lãnh đạo',
         'Khởi nghiệp - Làm giàu',
         'Marketing - Bán hàng',
-        'Quản trị - Lãnh đạo',
+        'Ngôn tình',
         'Tài chính cá nhân',
         'Phát triển cá nhân',
         'Doanh nhân - Bài học kinh doanh',
@@ -77,8 +77,8 @@ function Header(props) {
 
     const handleLogout = () => {
         if (window.confirm('Bạn có chắc chắn muốn đăng xuất?')) {
-            localStorage.removeItem('token');
             navigate('/home');
+            localStorage.clear();
         } else {
             return;
         }
@@ -319,7 +319,7 @@ function Header(props) {
                     </li>
                     <li>
                         <Link className={cx('link-menu')} to="/audiobook">
-                            Sách nghe
+                            Sách nói
                         </Link>
                     </li>
                     <li>

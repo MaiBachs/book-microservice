@@ -25,7 +25,20 @@ function ReadingBookManagement() {
 
   function handleSelectBook(book){
     setBookSelected(book);
-    console.log(book)
+  }
+
+  function handkeDelete(bookId){
+    axios
+      .get("http://localhost:9191/api/e-book-service/management/delete", {
+        params: {
+          bookId: bookId,
+        },
+    })
+      .then((response) => {
+        alert("Delete success");
+        handleSearch();
+      })
+      .catch();
   }
 
   const [listBookSearch, setListBookSearch] = useState({
@@ -185,7 +198,7 @@ function ReadingBookManagement() {
                   <td><Link href='#' to="/pdffileview" state={book} >{book.preview}</Link></td>
                   <td className={cx("action")}><BiDetail className={cx("detail")} onClick={()=>{handleOpen(); handleSelectBook(book)}} handleClose={handleClose} /></td>
                   <td className={cx("action")}><FaEdit className={cx("edit")} onClick={()=>{handleOpenEdit(); handleSelectBook(book)}} handleClose={handleCloseEdit} /></td>
-                  <td className={cx("action")}><MdDelete className={cx("delete")} /></td>
+                  <td className={cx("action")}><MdDelete className={cx("delete")} onClick={()=>{handkeDelete(book.id)}}/></td>
                 </tr>
                 </>
               ))}

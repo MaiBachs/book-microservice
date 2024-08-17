@@ -9,6 +9,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 import toastr from 'toastr';
+import Cookies from 'js-cookie';
 
 const cx = classNames.bind(styles);
 
@@ -51,22 +52,28 @@ function Register(props) {
             toastr.error('Mật khẩu không khớp, hãy nhập lại');
             return;
         }
-        axios.post('http://localhost:9191/api/sercuriy-service/user/register', form).then((response)=>{
-            toastr.success('Đăng kí thành công');
-            axios
-                .post('http://localhost:9191/api/sercuriy-service/user/authenticate', { ...form })
-                .then((response) => {
-                    localStorage.setItem('token', response.data.token);
-                    localStorage.setItem('userName', form.userName);
-                    toastr.success('Đăng nhập thành công');
-                    navigate('/');
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        }).catch(()=>{
-            return toastr.error('Tài khoản đã tồn tại');
-        });
+        axios
+            .post('http://localhost:9191/api/sercuriy-service/user/register', form)
+            .then((response) => {
+                toastr.success('Đăng kí thành công');
+                axios
+                    .post('http://localhost:9191/api/sercuriy-service/user/authenticate', { ...form })
+                    .then((response) => {
+                        localStorage.setItem('token', response.data.token);
+                        localStorage.setItem('email', response.data.email);
+                        localStorage.setItem('userId', response.data.userId);
+                        localStorage.setItem('userName', form.userName);
+                        Cookies.set('email', response.data.email);
+                        toastr.success('Đăng nhập thành công');
+                        navigate('/');
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            })
+            .catch(() => {
+                return toastr.error('Tài khoản đã tồn tại');
+            });
     };
 
     return (

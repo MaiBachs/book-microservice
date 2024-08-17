@@ -23,8 +23,12 @@ function Home() {
         totalPage: 0,
         bookEntityList: [],
     });
+    const [listBookRecomend, setListBookRecomend] = useState([]);
     const [listAudioBook, setListAudioBook] = useState([]);
     const [listBookCT2, setListBookCT2] = useState([]);
+    console.log(listBookRecomend);
+    console.log(listAudioBook);
+    console.log(listBookCT2);
 
     useEffect(() => {
         setTimeout(() => {
@@ -38,6 +42,20 @@ function Home() {
             .catch((error) => {
                 console.log(error);
             });
+
+        axios
+            .get(
+                `http://localhost:9191/api/e-book-service/recomend-for-user?userId=${
+                    localStorage.getItem('userId') ? localStorage.getItem('userId') : ''
+                }`,
+            )
+            .then((response) => {
+                setListBookRecomend(response.data.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
         axios
             .get('http://localhost:9191/api/e-book-service/get-all-book')
             .then((response) => {
@@ -208,9 +226,59 @@ function Home() {
                     </div>
                     <div className={cx('content2')}>
                         <div className={cx('audio-book')}>
-                            <div className={cx('title-audio')}>AUDIO BOOK</div>
+                            <div className={cx('title-audio')}>CÓ THỂ PHÙ HỢP VỚI BẠN</div>
+                        </div>
+                        <div className={cx('best-rank')}>
+                            <AliceCarousel
+                                mouseTracking
+                                disableDotsControls
+                                keyboardNavigation
+                                items={listBookRecomend.map((bookCT2) => {
+                                    return <CardBookSmall bookCT2={bookCT2} />;
+                                })}
+                                responsive={{
+                                    1324: { items: 6 },
+                                }}
+                                renderPrevButton={() => (
+                                    <button
+                                        style={{
+                                            position: 'absolute',
+                                            marginTop: '-170px',
+                                            marginLeft: '-550px',
+                                            backgroundColor: 'transparent',
+                                            border: 'none',
+                                            fontSize: '35px',
+                                            color: '#1ba085',
+                                        }}
+                                    >
+                                        {'<'}
+                                    </button>
+                                )}
+                                renderNextButton={() => (
+                                    <button
+                                        style={{
+                                            position: 'absolute',
+                                            marginTop: '-170px',
+                                            marginLeft: '256px',
+                                            backgroundColor: 'transparent',
+                                            border: 'none',
+                                            fontSize: '35px',
+                                            color: '#1ba085',
+                                        }}
+                                    >
+                                        {'>'}
+                                    </button>
+                                )}
+                            />
+                        </div>
+                    </div>
+                    <div className={cx('content3')}>
+                        <div className={cx('audio-book')}>
+                            <div className={cx('title-audio')}>SÁCH NÓI</div>
                             <div>
-                                <Link className={cx('link-viewall')}>Xem tất cả</Link>
+                                <Link className={cx('link-viewall')} to="/audiobook">
+                                    Xem tất cả
+                                </Link>
                             </div>
                         </div>
                         <div className={cx('best-rank')}>
@@ -257,7 +325,6 @@ function Home() {
                             />
                         </div>
                     </div>
-                    <div className={cx('content3')}></div>
                 </div>
             </DefaultLayout>
         </div>

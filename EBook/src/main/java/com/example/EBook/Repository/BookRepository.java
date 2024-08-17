@@ -21,7 +21,7 @@ public interface BookRepository extends JpaRepository<BookEntity, Long> {
 			+ "and (:bookAuthor is null or upper(be.bookAuthor) like concat('%',upper(:bookAuthor),'%' ) )"
 			+ "and (:bookCategory is null or upper(be.bookCategory) like concat('%',upper(:bookCategory),'%' ) )"
 			+ "and (:bookType is null or be.bookType = :bookType ) "
-			+ "order by bookName asc ")
+			+ "order by lastUpdate desc ")
 	Page<BookEntity> searchBookByPage(String bookName, String bookAuthor, String bookCategory, Long bookType, Pageable pageable);
 	
 	BookEntity findByPreview(String preview);
@@ -33,4 +33,7 @@ public interface BookRepository extends JpaRepository<BookEntity, Long> {
 			+ "where h.book_id is not null "
 			+ "and h.user_id = :userId ", nativeQuery = true)
 	Page<Long> getBookPaid(@Param("userId") Long userId, Pageable pageable);
+	
+	@Query(value = "select be from BookEntity be where be.bookCategory = :bookCategory order by be.view ")
+    List<BookEntity> findTopBookCategoryLimit(@Param("bookCategory") String category, Pageable pageable);
 }

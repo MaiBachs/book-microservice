@@ -109,4 +109,26 @@ public class AudioBookService {
         stream.close();
         out.close();
     }
+    
+    public void delete(Long bookId) {
+    	audioBookRepository.deleteById(bookId);
+    }
+    
+    public AudioBook edit(MultipartFile file, AudioBook audioBook) throws IOException {
+    	if(file != null) {
+    		File fileUpload = convertToFile(file);
+        	Date date = new Date();
+        	String fileName = file.getOriginalFilename().substring(0, file.getOriginalFilename().lastIndexOf('.'))+date.getTime()+".ogg";
+        	File dirUploadUser = new File(uploadFolderUser);
+        	File dirUploadAdmin = new File(uploadFolderAdmin);
+        	saveFile(fileUpload, fileName, dirUploadUser);
+        	saveFile(fileUpload, fileName, dirUploadAdmin);
+        	audioBook.setPreview("audioBook\\" + fileName);
+        	audioBook.setLastUpdate(new Date());
+        	audioBook = audioBookRepository.save(audioBook);
+    	}else {
+    		audioBook = audioBookRepository.save(audioBook);
+    	}
+    	return audioBook;
+    }
 }

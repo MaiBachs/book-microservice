@@ -51,4 +51,27 @@ public class AudioBookManagement {
 		}
         return responseFactory.success(audioBook);
     }
+	
+	@GetMapping(value = "/delete")
+    public ResponseEntity<?> delete(@RequestParam("bookId") Long bookId){
+		audioBookService.delete(bookId);
+        return responseFactory.success();
+    }
+	
+	@PostMapping(value = "/edit")
+    public ResponseEntity<GeneralResponse<AudioBook>> edit(
+    		@RequestParam("bookEntityStr") String bookEntityStr 
+    		,@RequestParam(value="file", required = false) MultipartFile file){
+		AudioBook audioBook = new AudioBook();
+    	try {
+    		Gson gson = new Gson();
+    		audioBook = gson.fromJson(bookEntityStr, new TypeToken<AudioBook>() {
+            }.getType());
+    		audioBook = audioBookService.edit(file, audioBook);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return responseFactory.success(audioBook);
+    }
 }

@@ -93,9 +93,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
         span {
             font-size: 16px;
             color: black;
+            overflow-x: hidden;
+            height: 25px;
         }
     }
 }

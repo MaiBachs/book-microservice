@@ -46,12 +46,12 @@ const HistoryPaymentAudioBook = () => {
                 <div className={cx('side-bar')}>
                     <div className={cx('pay-ebook-menu')}>
                         <Link to="/historypaymentbook" className={cx('pay-book-tab')}>
-                            Thanh toán Ebook
+                            Thanh toán sách đọc
                         </Link>
                     </div>
                     <div className={cx('pay-audio-book-menu')}>
                         <Link to="/historypaymentaudiobook" className={cx('pay-book-tab')}>
-                            Thanh toán AudioBook
+                            Thanh toán sách nghe
                         </Link>
                     </div>
                     <div className={cx('pay-member-menu')}>

@@ -78,7 +78,7 @@ const Chat = () => {
 
         if (message !== null) {
             const msg = {
-                userName: Cookies.get('email'),
+                userName: localStorage.getItem('email'),
                 message: message,
                 image: base64Image,
                 actionTime: new Date(),
@@ -90,6 +90,8 @@ const Chat = () => {
     };
 
     const renderMess = mess.map((m, index) => {
+        console.log(m);
+
         if (m.userName === localStorage.getItem('email')) {
             return (
                 <div

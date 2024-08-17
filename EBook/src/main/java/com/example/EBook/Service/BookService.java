@@ -9,9 +9,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +35,7 @@ import com.example.EBook.input.BookInput;
 import com.example.EBook.output.BookOutput;
 import java.util.Properties;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import com.toshiba.mwcloud.gs.Collection;
 import com.toshiba.mwcloud.gs.Container;
@@ -56,7 +61,9 @@ import org.apache.mahout.cf.taste.model.PreferenceArray;
 import org.apache.mahout.cf.taste.impl.similarity.CityBlockSimilarity;
 import org.apache.mahout.cf.taste.neighborhood.UserNeighborhood;
 import org.apache.mahout.cf.taste.recommender.UserBasedRecommender;
+import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
+import org.apache.mahout.cf.taste.impl.similarity.PearsonCorrelationSimilarity;
 
 @Service
 public class BookService {
@@ -211,7 +218,7 @@ public class BookService {
         		categoryId = 2l;
         	}else if(category.equals("Tài chính cá nhân")) {
         		categoryId = 3l;
-        	}else if(category.equals("Quản trị - Lãnh đạo")) {
+        	}else if(category.equals("Ngôn tình")) {
         		categoryId = 4l;
         	}else if(category.equals("Marketing - Bán hàng")) {
         		categoryId = 5l;
@@ -260,35 +267,26 @@ public class BookService {
     	return userGridDb;
     }
     
+    public BookEntity edit(MultipartFile file, BookEntity bookEntity) throws IOException {
+    	if(file != null) {
+    		File fileUpload = convertToFile(file);
+        	Date date = new Date();
+        	String fileName = file.getOriginalFilename().substring(0, file.getOriginalFilename().lastIndexOf('.'))+date.getTime()+".pdf";
+        	File dirUpload = new File(uploadFolder);
+        	saveFile(fileUpload, fileName, dirUpload);
+        	bookEntity.setLastUpdate(new Date());
+        	bookEntity.setPreview(fileName);
+        	bookEntity = bookRepository.save(bookEntity);
+    	}else {
+    		bookEntity = bookRepository.save(bookEntity);
+    	}
+    	return bookEntity;
+    }
+    
     public List<BookEntity> recomentForUser(Long userId) {
+    	List<BookEntity> bookEntities = new ArrayList<>();
     	try {
-    		List<UserAction> userActions = userActionRepository.findByUserId(userId);
-//    		List<UserGridDb> userGridDbs = new ArrayList<>();
-//	    	Properties props = new Properties();
-//	    	props.setProperty("notificationMember", "127.0.0.1:10001");
-//	        props.setProperty("clusterName", "myCluster");
-//	    	props.setProperty("user", "admin");
-//	    	props.setProperty("password", "admin");
-//	        GridStore store = GridStoreFactory.getInstance().getGridStore(props);
-//	        
-//	        Container<Object, Row> container = store.getContainer("UserAction");
-//	        TimeSeries<UserGridDb> ts = null;
-//	        if (container != null) {
-//	        	store.dropContainer("UserAction");
-//	        	ts = store.putTimeSeries("UserAction", UserGridDb.class);
-//	        }else {
-//	        	ts = store.putTimeSeries("UserAction", UserGridDb.class);
-//	        }
-//	        for(UserAction u: userActions) {
-//	        	UserGridDb userGridDb = convertUserToUserGridDb(u);
-//	        	userGridDbs.add(userGridDb);
-//	        	ts.append(userGridDb);
-//	        }
-//			Collection<String, UserGridDb> coll = store.putCollection("ts", UserGridDb.class);
-//			coll.put(userGridDbs);
-//			Query<UserGridDb> query = coll.query("select *");
-//	        RowSet<UserGridDb> res = query.fetch();
-	        
+    		List<UserAction> userActions = userActionRepository.findAll();
 	        Map<Long, Map<Long, Float>> userItemRatings = new HashMap<>();
 	        for (UserAction action : userActions) {
 	            Long uId = action.getUserId();
@@ -298,49 +296,110 @@ public class BookService {
 	            userItemRatings.computeIfAbsent(uId, k -> new HashMap<>()).put(categoryId, view);
 	        }
 	        
-	        FastByIDMap<PreferenceArray> preferenceMap = new FastByIDMap<>();
-	        for (Map.Entry<Long, Map<Long, Float>> entry : userItemRatings.entrySet()) {
-	            Long uId = entry.getKey();
-	            Map<Long, Float> itemRatings = entry.getValue();
-	            List<Preference> preferences = new ArrayList<>();
-	            for (Map.Entry<Long, Float> itemRating : itemRatings.entrySet()) {
-	                preferences.add(new GenericPreference(uId, itemRating.getKey(), itemRating.getValue()));
-	            }
-	            preferenceMap.put(uId, new GenericUserPreferenceArray(preferences));
+	        if(userItemRatings.get(userId) == null) {
+	        	return new ArrayList<>();
 	        }
-	        
-	        DataModel model = new GenericDataModel(preferenceMap);
-	        CityBlockSimilarity similarity = new CityBlockSimilarity(model);
-	        UserNeighborhood neighborhood = new ThresholdUserNeighborhood(3.0,similarity, model);
-	        com.example.EBook.mahoutCustom.interfaceMahout.UserBasedRecommender recommender = new com.example.EBook.mahoutCustom.GenericUserBasedRecommender(model, neighborhood, similarity);
-	        // UserID and number of items to be recommended
-	        List<RecommendedItem> recommended_items = recommender.recommend(userId, 5); 
-	            
-	        for (RecommendedItem r : recommended_items) {
-	        	System.out.println(r);
+	        Map<Long, Float> recommendations = generateRecommendations(userId, userItemRatings, 3);
+	        for (Map.Entry<Long, Float> recommendation : recommendations.entrySet()) {
+	        	String category = "";
+	        	if(recommendation.getKey().equals(1l)) {
+	        		category = "Doanh nhân - Bài học kinh doanh";
+	        	}else if(recommendation.getKey().equals(2l)) {
+	        		category = "Phát triển cá nhân";
+	        	}else if(recommendation.getKey().equals(3l)) {
+	        		category = "Tài chính cá nhân";
+	        	}else if(recommendation.getKey().equals(4l)) {
+	        		category = "Ngôn tình";
+	        	}else if(recommendation.getKey().equals(5l)) {
+	        		category = "Marketing - Bán hàng";
+	        	}else if(recommendation.getKey().equals(6l)) {
+	        		category = "Khởi nghiệp - Làm giàu";
+	        	}else if(recommendation.getKey().equals(7l)) {
+	        		category = "Viễn tưởng - Giả tưởng";
+	        	}else if(recommendation.getKey().equals(8l)) {
+	        		category = "Trinh thám - Kinh dị";
+	        	}
+	        	List<BookEntity> listByCate = bookRepository.findTopBookCategoryLimit(category, PageRequest.of(0, 10));
+	        	if(listByCate.size() > 0) {
+		            Collections.shuffle(listByCate);
+		            List<BookEntity> randomBooks = listByCate.stream().limit(4).collect(Collectors.toList());
+		        	bookEntities.addAll(randomBooks);
+	        	}
 	        }
-//	        store.close();
-//		} catch (GSException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
+	        return bookEntities;
 		} catch (Exception ex) {
             ex.printStackTrace();
         }
         return null;
 	}
     
-    public BookEntity edit(MultipartFile file, BookEntity bookEntity) throws IOException {
-    	if(file != null) {
-    		File fileUpload = convertToFile(file);
-        	Date date = new Date();
-        	String fileName = file.getOriginalFilename().substring(0, file.getOriginalFilename().lastIndexOf('.'))+date.getTime()+".pdf";
-        	File dirUpload = new File(uploadFolder);
-        	saveFile(fileUpload, fileName, dirUpload);
-        	bookEntity.setLastUpdate(new Date());
-        	bookEntity = bookRepository.save(bookEntity);
-    	}else {
-    		bookEntity = bookRepository.save(bookEntity);
-    	}
-    	return bookEntity;
+    // Method to calculate the CityBlock (Manhattan) distance between two users' preferences
+    public static double calculateCityBlockDistance(Map<Long, Float> user1, Map<Long, Float> user2) {
+        double distance = 0.0;
+        int commonItems = 0;
+
+        for (Long categoryId : user1.keySet()) {
+            if (user2.containsKey(categoryId)) {
+                distance += Math.abs(user1.get(categoryId) - user2.get(categoryId));
+                commonItems++;
+            }
+        }
+
+        // Return a large distance if there are no common items, as they cannot be compared meaningfully
+        return commonItems > 0 ? distance : Double.MAX_VALUE;
+    }
+
+    // Method to find neighbors within a certain threshold using CityBlock distance
+    public static List<Long> getTopNClosestNeighbors(Long userId, Map<Long, Map<Long, Float>> preferenceMap, int topN) {
+        List<Map.Entry<Long, Double>> userDistances = new ArrayList<>();
+
+        Map<Long, Float> targetUserPrefs = preferenceMap.get(userId);
+        for (Map.Entry<Long, Map<Long, Float>> entry : preferenceMap.entrySet()) {
+            Long otherUserId = entry.getKey();
+            if (!otherUserId.equals(userId)) {
+                double distance = calculateCityBlockDistance(targetUserPrefs, entry.getValue());
+                userDistances.add(new AbstractMap.SimpleEntry<>(otherUserId, distance));
+            }
+        }
+
+        // Sort users by distance in ascending order
+        userDistances.sort(Comparator.comparingDouble(Map.Entry::getValue));
+
+        // Extract the top N closest neighbors
+        List<Long> closestNeighbors = new ArrayList<>();
+        for (int i = 0; i < userDistances.size(); i++) {
+            closestNeighbors.add(userDistances.get(i).getKey());
+        }
+
+        return closestNeighbors;
+    }
+    
+ // Method to generate recommendations for a given user
+    public static Map<Long, Float> generateRecommendations(Long userId, Map<Long, Map<Long, Float>> preferenceMap, int topN) {
+        List<Long> closestNeighbors = getTopNClosestNeighbors(userId, preferenceMap, topN);
+        Map<Long, Float> topRecommendations = new LinkedHashMap	<>();
+        
+        for(int i = 0; i< topN; i++) {
+		    Map<Long, Float> targetUserPrefs = preferenceMap.get(userId);
+		    Map<Long, Float> neighborPrefs = preferenceMap.get(closestNeighbors.get(i));
+		
+		    for (Map.Entry<Long, Float> entry : neighborPrefs.entrySet()) {
+		    	Long categoryId = entry.getKey();
+		        topRecommendations.put(categoryId, topRecommendations.getOrDefault(categoryId, 0.0f) + entry.getValue());
+		    }
+        }
+        
+        Map<Long, Float> result = new LinkedHashMap<>();
+        
+        topRecommendations.entrySet()
+        .stream()
+        .sorted(Map.Entry.<Long, Float>comparingByValue(Comparator.reverseOrder()))
+        .forEachOrdered(entry -> result.put(entry.getKey(), entry.getValue()));
+
+        return result;
+    }
+    
+    public void delete(Long bookId) {
+    	bookRepository.deleteById(bookId);
     }
 }

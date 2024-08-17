@@ -22,12 +22,14 @@ function CardBookSmall(props) {
                         </Link>
                     </span>
                     <button>
-                        <Link className={cx("linkdetail-book")} to="/detailbook" state={props.bookCT2}>Chi tiết</Link>
+                        <Link className={cx('linkdetail-book')} to="/detailbook" state={props.bookCT2}>
+                            Chi tiết
+                        </Link>
                     </button>
                 </div>
             </div>
             <div className={cx('card-footer')}>
-                <span>Gói Hội viên</span>
+                <span>{props.bookCT2.bookCategory}</span>
             </div>
         </div>
     );

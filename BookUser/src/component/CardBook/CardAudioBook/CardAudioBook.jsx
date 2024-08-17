@@ -28,7 +28,7 @@ const CardAudioBook = (props) => {
                 </div>
             </div>
             <div className={cx('card-footer')}>
-                <span>Gói Hội viên</span>
+                <span>Sách nói</span>
             </div>
         </div>
     );
